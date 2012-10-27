@@ -2,6 +2,22 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c82d6256-c46d-4ee5-813a-2f1dc65af6e5" name="Default" comment="">
+      <change type="DELETED" beforePath="$PROJECT_DIR$/chef-deps/chef-client-bootstrap.rb" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/chef-deps/chef-server-apt.rb" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/chef-deps/chef-server-bootstrap.rb" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/chef-deps/chef-user.rb" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/chef-deps/chef/client.rb.erb" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/chef-deps/chef/knife.rb.erb" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/chef-deps/chef/solo.rb.erb" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/chef-deps/hostname.rb" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/chef-deps/knife-client.rb" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/chef-deps/locale.rb" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/chef-deps/node-instance.rb" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/chef-deps/packages.rb" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/chef-deps/postgres.rb" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/chef-deps/rabbitmq.rb" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/chef-deps/rbenv.rb" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/chef-deps/rvm/rvm.sh.erb" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/easylodge_stack.rb" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
@@ -22,10 +38,19 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="lexim.rb" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="lexim.rb" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lexim.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="9" column="38" selection-start="368" selection-end="368" vertical-scroll-proportion="0.2348901">
+            <state line="16" column="0" selection-start="486" selection-end="486" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="user.rb" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/user.rb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="4" column="12" selection-start="165" selection-end="165" vertical-scroll-proportion="0.104395606">
               <folding />
             </state>
           </provider>
@@ -210,7 +235,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="22" width="1920" height="1174" extended-state="0" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Atlassian " active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -218,7 +243,7 @@
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3294849" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25" sideWeight="0.6705151" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25" sideWeight="0.6705151" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -360,20 +385,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/chef-deps/packages.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="1" column="5" selection-start="25" selection-end="25" vertical-scroll-proportion="0.026098901">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/chef-deps/hostname.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="26" selection-start="17" selection-end="26" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/system.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state line="6" column="3" selection-start="206" selection-end="206" vertical-scroll-proportion="0.0">
@@ -395,16 +406,16 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/user.rb">
+    <entry file="file://$PROJECT_DIR$/lexim.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="17" column="28" selection-start="611" selection-end="623" vertical-scroll-proportion="0.44368133">
+        <state line="16" column="0" selection-start="486" selection-end="486" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lexim.rb">
+    <entry file="file://$PROJECT_DIR$/user.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="38" selection-start="368" selection-end="368" vertical-scroll-proportion="0.2348901">
+        <state line="4" column="12" selection-start="165" selection-end="165" vertical-scroll-proportion="0.104395606">
           <folding />
         </state>
       </provider>
