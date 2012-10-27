@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="c82d6256-c46d-4ee5-813a-2f1dc65af6e5" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/system.rb" afterPath="$PROJECT_DIR$/system.rb" />
     </list>
     <ignored path="babushka-deps.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -34,7 +33,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/app_bundles.rb" />
         <option value="$PROJECT_DIR$/workstation.rb" />
         <option value="$PROJECT_DIR$/nginx/nginx.init.conf.erb" />
         <option value="$PROJECT_DIR$/nginx.rb" />
@@ -50,6 +48,7 @@
         <option value="$PROJECT_DIR$/user.rb" />
         <option value="$PROJECT_DIR$/system.rb" />
         <option value="$PROJECT_DIR$/ssl.rb" />
+        <option value="$PROJECT_DIR$/locale.rb" />
       </list>
     </option>
   </component>
@@ -388,6 +387,13 @@
     <entry file="file://$PROJECT_DIR$/lexim.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state line="16" column="0" selection-start="486" selection-end="486" vertical-scroll-proportion="0.41758242">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/locale.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="34" column="3" selection-start="772" selection-end="772" vertical-scroll-proportion="0.88736266">
           <folding />
         </state>
       </provider>
