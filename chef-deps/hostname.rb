@@ -1,14 +1,14 @@
-dep 'hostname', :hostname_str, :for => :linux do
-  def hostname
-    var(:hostname_str, :default => shell('hostname -f'))
+dep 'hostname', :host_name, :for => :linux do
+  def current_hostname
+    shell('hostname -f')
   end
+  host_name.default(shell('hostname'))
   met? {
-    stored_hostname = '/etc/hostname'.p.read
-    !stored_hostname.blank? && hostname == stored_hostname
+    current_hostname == host_name
   }
   meet {
-    sudo "echo #{var :hostname_str, :default => shell('hostname')} > /etc/hostname"
-    sudo "sed -ri 's/^127.0.0.1.*$/127.0.0.1 #{var(:hostname_str)} #{var(:hostname_str).sub(/\..*$/, '')} localhost.localdomain localhost/' /etc/hosts"
-    sudo "hostname #{var :hostname_str}"
+    sudo "echo #{host_name} > /etc/hostname"
+    sudo "sed -ri 's/^127.0.0.1.*$/127.0.0.1 #{host_name} #{host_name.to_s.sub(/\..*$/, '')} localhost.localdomain localhost/' /etc/hosts"
+    sudo "hostname #{host_name}"
   }
 end

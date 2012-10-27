@@ -4,7 +4,7 @@ dep 'bootstrap lexim', :username, :key do
   end
 
   requires [
-    'lexim:system'.with(:hostname_str => shell('hostname -f')),
+    'lexim:system'.with(:host_name => shell('hostname -f')),
     'lexim:user setup for provisioning'.with(:username => username, :key => key),
     'lexim:core dependencies',
     'lexim:build essential installed',
