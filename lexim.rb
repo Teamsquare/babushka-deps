@@ -11,6 +11,7 @@ dep 'bootstrap lexim', :username, :home_dir_base, :key do
     'lexim:nodejs installed',
     'lexim:core software',
     'lexim:passwordless sudo'.with(username),
+    'lexim:monit running',
     'lexim:ruby.src'
   ]
 end
