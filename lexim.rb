@@ -26,9 +26,18 @@ dep('after bootstrap', :domain) do
     'lexim:user can write to usr local',
     'bundler.gem'
   ]
-
 end
 
 dep 'web node' do
-  requires 'running.nginx'
+  requires 'lexim:running.nginx'
+  requires 'lexim:imagemagick.src'
+  # unicorn stuff
+end
+
+dep 'resque worker' do
+  requires 'lexim:imagemagick.src'
+end
+
+dep 'search engine' do
+  requires 'lexim:sphinx.src'
 end
