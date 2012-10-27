@@ -10,7 +10,7 @@ dep 'bootstrap lexim', :username, :home_dir_base, :key do
     'lexim:build essential installed',
     'lexim:nodejs installed',
     'lexim:core software',
-    'lexim:passwordless sudo',
+    'lexim:passwordless sudo'.with(username),
     'lexim:ruby.src'
   ]
 end
