@@ -11,9 +11,9 @@ dep 'dot files', :username, :github_user, :repo do
   }
 end
 
-dep 'user setup for provisioning', :username, :key do
+dep 'user setup for provisioning', :username, :key, :home_dir_base do
   requires [
-               'user exists'.with(:username => username),
+               'user exists'.with(:username => username, :home_dir_base => home_dir_base),
                'passwordless ssh logins'.with(username, key),
                'passwordless sudo'.with(username)
            ]
