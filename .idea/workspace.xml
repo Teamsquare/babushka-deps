@@ -24,19 +24,19 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="lexim.rb" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="lexim.rb" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lexim.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="3" column="5" selection-start="141" selection-end="141" vertical-scroll-proportion="0.078296706">
+            <state line="17" column="34" selection-start="521" selection-end="521" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="system.rb" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="system.rb" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/system.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="4" column="24" selection-start="115" selection-end="115" vertical-scroll-proportion="0.0">
+            <state line="22" column="3" selection-start="631" selection-end="631" vertical-scroll-proportion="0.57417583">
               <folding />
             </state>
           </provider>
@@ -69,8 +69,8 @@
         <option value="$PROJECT_DIR$/sudo.rb" />
         <option value="$PROJECT_DIR$/application_stack.rb" />
         <option value="$PROJECT_DIR$/chef-deps/hostname.rb" />
-        <option value="$PROJECT_DIR$/system.rb" />
         <option value="$PROJECT_DIR$/lexim.rb" />
+        <option value="$PROJECT_DIR$/system.rb" />
       </list>
     </option>
   </component>
@@ -406,16 +406,16 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/system.rb">
+    <entry file="file://$PROJECT_DIR$/lexim.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="4" column="24" selection-start="115" selection-end="115" vertical-scroll-proportion="0.0">
+        <state line="17" column="34" selection-start="521" selection-end="521" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lexim.rb">
+    <entry file="file://$PROJECT_DIR$/system.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="3" column="5" selection-start="141" selection-end="141" vertical-scroll-proportion="0.078296706">
+        <state line="22" column="3" selection-start="631" selection-end="631" vertical-scroll-proportion="0.57417583">
           <folding />
         </state>
       </provider>

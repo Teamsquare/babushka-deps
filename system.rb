@@ -14,8 +14,12 @@ dep 'secured system' do
 end
 
 dep 'tmp cleaning grace period', :for => :ubuntu do
-  met? { !grep(/^[^#]*TMPTIME=0/, "/etc/default/rcS") }
-  meet { change_line "TMPTIME=0", "TMPTIME=30", "/etc/default/rcS" }
+  met? {
+    "/etc/default/rcS".p.grep(/^[^#]*TMPTIME=0/).nil?
+  }
+  meet {
+    shell("sed -i'' -e 's/^TMPTIME=0$/TMPTIME=30/' '/etc/default/rcS'")
+  }
 end
 
 dep 'secured ssh logins' do
