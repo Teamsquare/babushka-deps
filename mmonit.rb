@@ -1,10 +1,30 @@
 require 'helpers'
 
-dep 'mmonit.running' do
+
+dep 'mmonit.running', :version, :prefix do
+  version.default!('2.4')
+  prefix.default!('/usr/local')
+
   requires %w(mmonit.src mmonit.startable)
+
+  setup do
+    must_be_root
+  end
+
+  met? do
+    (summary = shell("monit summary")) && summary[/'mmonit'.*Running/]
+  end
+
+  meet do
+    shell 'monit start mmonit'
+  end
 end
 
 dep 'mmonit.src', :version, :prefix do
+  setup do
+    must_be_root
+  end
+
   requires 'user and group exist'.with(:user => 'mmonit')
 
   version.default!('2.4')
@@ -23,6 +43,10 @@ dep 'mmonit.src', :version, :prefix do
 end
 
 dep 'mmonit.startable', :version, :prefix do
+  setup do
+    must_be_root
+  end
+
   version.default!('2.4')
   prefix.default!('/usr/local')
 
@@ -30,18 +54,5 @@ dep 'mmonit.startable', :version, :prefix do
   meet do
     render_erb "monit/mmonit.monitrc.erb", :to => "/etc/monit/mmonit.monitrc", :perms => 700
     shell "monit reload"
-  end
-end
-
-dep 'mmonit.running', :version, :prefix do
-  version.default!('2.4')
-  prefix.default!('/usr/local')
-
-  met? do
-    (summary = shell("monit summary")) && summary[/'mmonit'.*Running/]
-  end
-
-  meet do
-    shell 'monit start mmonit'
   end
 end
