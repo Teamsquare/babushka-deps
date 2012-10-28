@@ -1,0 +1,26 @@
+# <%= generated_by_babushka %>
+
+set daemon <%= var(:monit_frequency) %>
+
+set logfile /var/log/monit.log
+set idfile /var/lib/monit/id
+set statefile /var/lib/monit/state
+
+set eventqueue
+basedir /var/lib/monit/events # set the base directory where events will be stored
+slots 100                     # optionally limit the queue size
+
+set httpd port <%= var(:monit_port) %>
+allow localhost
+
+check system hardware
+if loadavg (1min) > 4 then alert
+if loadavg (5min) > 2 then alert
+if memory usage > 80% then alert
+if swap usage > 25% then alert
+if cpu usage (user) > 70% then alert
+if cpu usage (system) > 30% then alert
+if cpu usage (wait) > 20% then alert
+
+include <%= var(:monit_included_dir) %>
+
