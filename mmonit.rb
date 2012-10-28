@@ -2,7 +2,7 @@ dep 'mmonit.running', :version, :install_prefix do
   version.default!('2.4')
   install_prefix.default!('/usr/local')
 
-  requires %w(mmonit.src mmonit.startable)
+  requires %w(mmonit mmonit.startable)
 
   setup do
     must_be_root
@@ -17,7 +17,7 @@ dep 'mmonit.running', :version, :install_prefix do
   end
 end
 
-dep 'mmonit.src', :version, :install_prefix do
+dep 'mmonit', :version, :install_prefix do
   setup do
     must_be_root
   end
