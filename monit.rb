@@ -1,19 +1,12 @@
-# Installs and configures monit. Like a boss.
-# Taken from envato/babushka-deps@f2ddcd58fe2d76a5922a373e4c0b809b775da4f2
-
 dep 'monit running' do
-  requires 'monit'
-  requires_when_unmet 'monit startable'
+  requires [
+    'monit.managed',
+    'monit configured',
+    'monit startable'
+  ]
+
   met? { (status = sudo("monit status")) && status[/uptime/] }
   meet { sudo "/etc/init.d/monit start" }
-end
-
-dep 'monit', :template => 'managed'
-
-dep 'monit startable' do
-  requires 'monitrc configured', 'monit config is where we expect'
-  met? { '/etc/default/monit'.p.grep('START=yes') }
-  meet { sudo "sed -i s/START=no/START=yes/ /etc/default/monit" }
 end
 
 dep 'monitrc configured', :monit_frequency, :monit_port, :monit_included_dir do
@@ -25,7 +18,7 @@ dep 'monitrc configured', :monit_frequency, :monit_port, :monit_included_dir do
   meet { render_erb "monit/monitrc.erb", :to => "/etc/monit/monitrc", :sudo => true, :perms => 700 }
 end
 
-dep 'monit config is where we expect' do
-  met? { "/etc/default/monit".p.exists? }
-  meet { shell "echo START=no >> /etc/default/monit" }
+dep 'monit startable' do
+  met? { '/etc/default/monit'.p.grep('START=yes') }
+  meet { sudo "sed -i s/START=no/START=yes/ /etc/default/monit" }
 end
