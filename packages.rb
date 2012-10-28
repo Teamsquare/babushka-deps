@@ -157,10 +157,4 @@ dep('binutils-doc.managed') {
 }
 dep 'autoconf.managed'
 dep 'flex.managed'
-dep('libevent-devel.managed') {
-  installs {
-    via :apt, 'libevent-devel'
-  }
-
-  provides []
-}
+dep('libevent-dev.managed')
