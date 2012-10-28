@@ -23,7 +23,7 @@ dep 'redis.startable', :version do
 
   version.default!('2.6.2')
 
-  met? { "/etc/monit/redis.monitrc".p.exists? }
+  met? { "/etc/monit/conf.d/redis.monitrc".p.exists? }
   meet do
     render_erb "monit/redis.monitrc.erb", :to => "/etc/monit/conf.d/redis.monitrc", :perms => 700
     shell "monit reload"
