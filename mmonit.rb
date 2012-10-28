@@ -21,6 +21,8 @@ dep 'libzdb.src', :version do
   version.default!('2.10.4')
 
   source "http://www.tildeslash.com/libzdb/dist/libzdb-#{version}.tar.gz"
+
+  provides []
 end
 
 dep 'mmonit', :version, :install_prefix do
