@@ -1,7 +1,7 @@
 dep 'pgclient.installed' do
-  requires 'libpg-dev.managed'
+  requires 'libpq-dev.managed'
 end
 
-dep 'libpg-dev.managed' do
+dep 'libpq-dev.managed' do
   provides 'pg_control'
 end
