@@ -160,3 +160,4 @@ dep 'flex.managed'
 dep('libevent-dev.managed') {
   provides []
 }
+dep 'memcached.managed'

@@ -1,5 +1,5 @@
 dep 'memcached.running' do
-  requires %w(memcached.src memcached.startable)
+  requires %w(memcached.managed memcached.startable)
 
   setup do
     must_be_root
@@ -13,12 +13,6 @@ dep 'memcached.running' do
     shell '/etc/init.d/memcached stop && monit start memcached'
   end
 end
-
-dep 'memcached.src' do
-  requires 'libevent-dev.managed'
-  source 'http://memcached.org/latest'
-end
-
 
 dep 'memcached.startable' do
   setup do
