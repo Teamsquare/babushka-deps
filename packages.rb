@@ -3,7 +3,12 @@ dep 'bundler.gem' do
   installs 'bundler >= 1.0.13'
   provides 'bundle'
 end
-dep 'libsqlite3-dev.managed'
+dep 'libsqlite3-dev.managed' do
+  install {
+    via :apt, 'sqlite3.managed', 'libsqlite3-dev.managed'
+  }
+  provides 'sqlite3'
+end
 dep 'sqlite3.managed'
 dep 'libzdb.src', :version do
   version.default!('2.10.5')

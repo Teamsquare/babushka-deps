@@ -22,7 +22,7 @@ dep 'mmonit', :version, :install_prefix do
     must_be_root
   end
 
-  requires 'flex.managed', 'sqlite3.managed', 'libsqlite3-dev.managed', 'libzdb.src', 'user and group exist'.with(:user => 'mmonit')
+  requires 'flex.managed', 'libsqlite3-dev.managed', 'libzdb.src', 'user and group exist'.with(:user => 'mmonit')
 
   version.default!('2.4')
   install_prefix.default!('/usr/local')
