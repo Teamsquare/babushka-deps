@@ -145,7 +145,7 @@ dep 'configured.nginx', :nginx_prefix, :server_type do
   nginx_prefix.default!('/opt/nginx') # This is required because nginx.src might be cached.
   requires 'nginx.src'.with(:nginx_prefix => nginx_prefix), 'www user and group', 'nginx.logrotate'
   met? {
-    Babushka::Renderable.new(nginx_conf).from?(dependency.load_path.parent / "nginx/nginx.conf.erb")
+    Babushka::Renderable.new(nginx_conf).from?(dependency.load_path.parent / "nginx/#{server_type}/nginx.conf.erb")
   }
   meet {
     render_erb "nginx/#{server_type}/nginx.conf.erb", :to => nginx_conf, :sudo => true
