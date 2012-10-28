@@ -33,7 +33,7 @@ dep 'new relic public key installed' do
   end
 
   met? do
-    keys = shell('apt-key list') && keys[/548C16BF/]
+    (keys = shell('apt-key list')) && keys[/548C16BF/]
   end
 
   meet do
