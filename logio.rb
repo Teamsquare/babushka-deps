@@ -4,7 +4,7 @@ dep 'logio', :install_prefix do
   requires 'npm installed'
 
   met? do
-    "#{install_prefix}/log.io".p.exists?
+    "#{install_prefix}/bin/log.io".p.exists?
   end
 
   meet do
