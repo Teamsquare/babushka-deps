@@ -17,12 +17,13 @@ dep 'mmonit.running', :version, :install_prefix do
   end
 end
 
-dep 'libzdb' do
+dep 'libzdb.managed' do
   requires 'libzdb sources added to apt'
 
   installs {
     via :apt, %w[libzdb libzdb-dev]
   }
+  provides []
 end
 
 dep 'libzdb sources added to apt' do
@@ -41,7 +42,7 @@ dep 'mmonit', :version, :install_prefix do
     must_be_root
   end
 
-  requires 'flex.managed', 'sqlite3.managed', 'libzdb', 'user and group exist'.with(:user => 'mmonit')
+  requires 'flex.managed', 'sqlite3.managed', 'libzdb.managed', 'user and group exist'.with(:user => 'mmonit')
 
   version.default!('2.4')
   install_prefix.default!('/usr/local')
