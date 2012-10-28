@@ -1,9 +1,5 @@
 dep 'monit running' do
-  requires [
-    'monit.managed',
-    'monit configured',
-    'monit startable'
-  ]
+  requires %w(monit.managed monit.configured monit.startable)
 
   met? { (status = sudo("monit status")) && status[/uptime/] }
   meet { sudo "/etc/init.d/monit start" }
@@ -11,7 +7,7 @@ end
 
 dep 'monit.managed'
 
-dep 'monitrc configured', :monit_frequency, :monit_port, :monit_included_dir do
+dep 'monit.configured', :monit_frequency, :monit_port, :monit_included_dir do
   monit_frequency.default!(30)
   monit_port.default!(9111)
   monit_included_dir.default!("/etc/monit/conf.d/*.monitrc")
@@ -20,7 +16,7 @@ dep 'monitrc configured', :monit_frequency, :monit_port, :monit_included_dir do
   meet { render_erb "monit/monitrc.erb", :to => "/etc/monit/monitrc", :sudo => true, :perms => 700 }
 end
 
-dep 'monit startable' do
+dep 'monit.startable' do
   met? { '/etc/default/monit'.p.grep('START=yes') }
   meet { sudo "sed -i s/START=no/START=yes/ /etc/default/monit" }
 end
