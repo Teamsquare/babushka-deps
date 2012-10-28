@@ -61,10 +61,6 @@ dep 'new relic started' do
 end
 
 dep 'newrelic-sysmond.managed' do
-  met? do
-
-  end
-
   installs {
     via :apt, 'newrelic-sysmond'
   }
