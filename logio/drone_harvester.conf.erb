@@ -1,0 +1,18 @@
+exports.config = {
+
+    // Log server host & port
+    server: {
+        host: '<%= logio_server %>',
+        port: 8998
+    },
+
+    // Watch the following log files, defined by label:path mappings
+    log_file_paths: {
+        active_record: '/www/lexim/shared/log/active_record.log',
+        production: '/www/lexim/shared/log/production.log',
+        resque: '/www/lexim/shared/log/resque.log',
+        newrelic_agent: '/www/lexim/shared/log/newrelic_agent.log',
+        searchd_log_file: '/www/lexim/shared/log/searchd.log',
+        query_log_file: '/www/lexim/shared/log/searchd.query.log'
+    }
+}
