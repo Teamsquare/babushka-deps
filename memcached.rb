@@ -33,6 +33,6 @@ dep 'memcached.startable' do
   meet do
     render_erb "monit/memcached.monitrc.erb", :to => "/etc/monit/conf.d/memcached.monitrc", :perms => 700
     render_erb "memcached/memcached.conf.erb", :to => "/etc/memcached.conf", :perms => 644
-    shell "monit reload && monit monitor memcached"
+    shell "monit reload"
   end
 end
