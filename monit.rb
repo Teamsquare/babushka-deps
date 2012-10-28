@@ -2,7 +2,7 @@ dep 'monit running' do
   requires %w(monit.managed monit.configured monit.startable)
 
   met? { (status = shell("monit status")) && status[/uptime/] }
-  meet { shell "service monit start" }
+  meet { shell "service monit stop && service monit start" }
 end
 
 dep 'monit.managed'
