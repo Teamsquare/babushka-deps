@@ -7,13 +7,13 @@ dep 'bootstrap lexim', :username, :key, :new_relic_key do
   requires [
     'lexim:system'.with(:host_name => shell('hostname -f')),
     'lexim:user setup for provisioning'.with(:username => username, :key => key),
-    'lexim:core dependencies',
-    'lexim:build essential installed',
-    'lexim:nodejs installed',
-    'lexim:core software',
     'lexim:passwordless sudo'.with(username),
     'lexim:monit running',
     'lexim:rpm monitoring'.with(new_relic_key),
+    'lexim:core dependencies',
+    'lexim:core software',
+    'lexim:build essential installed',
+    'lexim:nodejs installed',
     'lexim:ruby.src'
   ]
 end
