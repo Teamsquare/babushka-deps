@@ -66,6 +66,9 @@ dep 'new relic started' do
   shell '/etc/init.d/newrelic-sysmond start'
 end
 
+dep 'newrelic-sysmond.managed'
+
 def must_be_root
   unmeetable! "This dep has to be run as root." unless shell('whoami') == 'root'
 end
+
