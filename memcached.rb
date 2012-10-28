@@ -1,6 +1,6 @@
 dep 'memcached.running' do
   requires [
-    'user and group exist'.with(:user => 'memcached'),
+    'user and group exist'.with(:user => 'memcache'),
     'memcached.managed',
     'memcached.startable'
   ]
