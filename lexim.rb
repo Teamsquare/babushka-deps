@@ -1,4 +1,5 @@
 dep 'bootstrap lexim', :username, :key do
+  username.default!('lexim')
   setup do
     unmeetable! "This dep has to be run as root." unless shell('whoami') == 'root'
   end
@@ -16,15 +17,16 @@ dep 'bootstrap lexim', :username, :key do
   ]
 end
 
-dep('after bootstrap', :domain) do
+dep 'after bootstrap', :username do
+  username.default!('lexim')
   setup do
-    unmeetable! "This dep cannot be run as root." if shell('whoami') == 'root'
+    unmeetable! "This dep must be run as the generated user from 'bootstrap lexim'" if shell('whoami') == username
   end
 
   requires [
     'lexim:secured ssh logins',
     'lexim:user can write to usr local',
-    'bundler.gem'
+    'lexim:bundler.gem'
   ]
 end
 

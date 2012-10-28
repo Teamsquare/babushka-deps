@@ -67,3 +67,17 @@ dep 'user exists', :username, :home_dir_base do
     }
   end
 end
+
+dep('user can write to usr local') do
+  def user
+    shell 'whoami'
+  end
+
+  met? {
+    shell? "touch /usr/local/lib/touch-this"
+  }
+
+  meet {
+    shell "chown -R #{user}:#{user} /usr/local/", :sudo => true
+  }
+end
