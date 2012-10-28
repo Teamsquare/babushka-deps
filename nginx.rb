@@ -130,12 +130,12 @@ end
 
 dep 'nginx.site', :name, :server_name, :proxy_host, :proxy_port do
   met? do
-    "/etc/nginx/sites-available/#{name}.conf".p.exists? && "/etc/nginx/sites-enabled/#{name}".p.exists?
+    "#{nginx_prefix}/sites-available/#{name}.conf".p.exists? && "#{nginx_prefix}/sites-enabled/#{name}".p.exists?
   end
 
   meet do
-    render_erb 'nginx/sites/proxy.conf.erb', :to => "/etc/nginx/sites-available/#{name}.conf", :perms => '755', :sudo => true
-    shell "ln -s /etc/nginx/sites-available/#{name}.conf /etc/nginx/sites-enabled/#{name}"
+    render_erb 'nginx/sites/proxy.conf.erb', :to => "#{nginx_prefix}/sites-available/#{name}.conf", :perms => '755', :sudo => true
+    shell "ln -s #{nginx_prefix}/sites-available/#{name}.conf #{nginx_prefix}/sites-enabled/#{name}"
   end
 end
 
