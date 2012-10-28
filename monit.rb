@@ -20,3 +20,17 @@ dep 'monit.startable' do
   met? { '/etc/default/monit'.p.grep(/^START=yes$/) }
   meet { shell "sed -i s/START=no/START=yes/ /etc/default/monit" }
 end
+
+dep 'register with mmonit', :mmontit_host, :mmonit_port, :username, :password  do
+  mmonit_port.default!('8080')
+  username.default('monit')
+  password.default('monit')
+
+  met? {
+    "/etc/monit/monitrc".p.grep(/set mmonit/)
+  }
+
+  meet do
+    shell "echo set mmonit http://#{username}:#{password}@#{mmonit_host}:#{mmonit_port}/collector >> /etc/monit/monitrc"
+  end
+end
