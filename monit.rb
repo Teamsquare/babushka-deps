@@ -9,6 +9,8 @@ dep 'monit running' do
   meet { sudo "/etc/init.d/monit start" }
 end
 
+dep 'monit.managed'
+
 dep 'monitrc configured', :monit_frequency, :monit_port, :monit_included_dir do
   monit_frequency.default!(30)
   monit_port.default!(9111)
