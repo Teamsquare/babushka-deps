@@ -15,7 +15,7 @@ dep 'memcached.running' do
 end
 
 dep 'memcached.src' do
-  requires 'libevent-devel.managed'
+  requires 'libevent-dev.managed'
   source 'http://memcached.org/latest'
 end
 
