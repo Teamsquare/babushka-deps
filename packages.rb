@@ -10,8 +10,8 @@ dep 'libzdb.src', :version do
   configure_args L{
     %w(--with-sqlite=yes).join(' ')
   }
-
-  configure { log_shell "configure", configure_args }
+  
+  configure { log_shell "configure", default_configure_command }
   build { log_shell "build", "make" }
   install { log_shell "install", "make install", :sudo => true }
 end
