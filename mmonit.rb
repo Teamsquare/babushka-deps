@@ -47,7 +47,7 @@ dep 'mmonit.startable', :version, :install_prefix do
   version.default!('2.4')
   install_prefix.default!('/usr/local')
 
-  met? { "/etc/monit/monitrc".p.exists? }
+  met? { "/etc/monit/mmonit.monitrc".p.exists? }
   meet do
     render_erb "monit/mmonit.monitrc.erb", :to => "/etc/monit/mmonit.monitrc", :perms => 700
     shell "monit reload"
