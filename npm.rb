@@ -2,7 +2,7 @@ dep 'npm installed' do
   requires 'nodejs installed'
 
   met? do
-    'npm'.p.exists?
+    '/usr/local/bin/npm'.p.exists?
   end
 
   meet do

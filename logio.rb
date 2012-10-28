@@ -1,6 +1,6 @@
 dep 'logio', :install_prefix do
   install_prefix.default!('/usr/local')
-  
+
   requires 'npm installed'
 
   met? do
