@@ -12,7 +12,7 @@ set mmonit http://<%= username %>:<%= password %>@<%= mmonit_host %>:<%= mmonit_
 
 set httpd port <%= monit_port %>
 allow <%= username %>:<%= password %>
-allow localhost
+allow 0.0.0.0/0
 
 check system hardware
 if loadavg (1min) > 4 then alert
