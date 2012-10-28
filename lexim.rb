@@ -55,5 +55,5 @@ dep 'drone', :logio_server do
   requires 'lexim:memcached.running'
   requires 'lexim:pgclient.installed'
   requires 'lexim:sphinx.src'
-  requires 'lexim:logio.harvester'.with(:logio_server => logio_server, :node_type => 'done')
+  requires 'lexim:logio.harvester'.with(:logio_server => logio_server, :node_type => 'drone')
 end
