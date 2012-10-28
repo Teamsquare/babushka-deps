@@ -10,14 +10,6 @@ dep 'sqlite3.managed'
 dep 'libzdb.src', :version do
   version.default!('2.10.5')
   source "http://tildeslash.com/libzdb/dist/libzdb-#{version}.tar.gz"
-
-  configure_args L{
-    %w(--with-sqlite).join(' ')
-  }
-
-  configure { log_shell "configure", default_configure_command }
-  build { log_shell "build", "make" }
-  install { log_shell "install", "make install", :sudo => true }
 end
 
 dep 'coreutils.managed', :for => :osx do
