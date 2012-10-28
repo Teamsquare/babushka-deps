@@ -105,8 +105,10 @@ dep 'self signed cert.nginx', :domain, :nginx_prefix, :country, :state, :city, :
   }
 end
 
-dep 'running.nginx', :nginx_prefix do
-  requires 'configured.nginx'.with(nginx_prefix), 'startup script.nginx'.with(nginx_prefix)
+dep 'running.nginx', :nginx_prefix, :server_type do
+  server_type.default!('lexim_web_node')
+
+  requires 'configured.nginx'.with(nginx_prefix, server_type), 'startup script.nginx'.with(nginx_prefix)
   met? {
     nginx_running?.tap {|result|
       log "There is #{result ? 'something' : 'nothing'} listening on port 80."
@@ -126,15 +128,32 @@ dep 'startup script.nginx', :nginx_prefix do
   end
 end
 
-dep 'configured.nginx', :nginx_prefix do
+dep 'nginx.site', :name, :server_name, :proxy_host, :proxy_port do
+  met? do
+    "/etc/nginx/sites-available/#{name}.conf".p.exists? && "/etc/nginx/sites-enabled/#{name}".p.exists?
+  end
+
+  meet do
+    render_erb 'nginx/sites/proxy.conf.erb', :to => "/etc/nginx/sites-available/#{name}.conf", :perms => '755', :sudo => true
+    shell "ln -s /etc/nginx/sites-available/#{name}.conf /etc/nginx/sites-enabled/#{name}"
+  end
+end
+
+dep 'configured.nginx', :nginx_prefix, :server_type do
+  server_type.default!('lexim_web_node')
+
   nginx_prefix.default!('/opt/nginx') # This is required because nginx.src might be cached.
   requires 'nginx.src'.with(:nginx_prefix => nginx_prefix), 'www user and group', 'nginx.logrotate'
   met? {
     Babushka::Renderable.new(nginx_conf).from?(dependency.load_path.parent / "nginx/nginx.conf.erb")
   }
   meet {
-    render_erb 'nginx/nginx.conf.erb', :to => nginx_conf, :sudo => true
-    render_erb 'nginx/lexim.conf.erb', :to => nginx_prefix / "conf/lexim.conf", :perms => '755', :sudo => true
+    render_erb "nginx/#{server_type}/nginx.conf.erb", :to => nginx_conf, :sudo => true
+
+    if server_type == 'lexim_web_node'
+      render_erb "nginx/#{server_type}/lexim.conf.erb", :to => nginx_prefix / "conf/lexim.conf", :perms => '755', :sudo => true
+    end
+
   }
 end
 

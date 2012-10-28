@@ -42,16 +42,20 @@ dep 'after bootstrap', :username do
   ]
 end
 
-dep 'web node' do
+dep 'web node', :logio_server do
+  requires 'bootstrap ruby'
   requires 'lexim:running.nginx'
   requires 'lexim:imagemagick.src'
-  # unicorn stuff
+  requires 'lexim:pgclient.installed'
+  requires 'lexim:logio.harvester'.with(:logio_server => logio_server, :node_type => 'web')
 end
 
-dep 'resque worker' do
+dep 'drone', :logio_server do
+  requires 'bootstrap ruby'
   requires 'lexim:imagemagick.src'
-end
-
-dep 'search engine' do
+  requires 'lexim:redis.running'
+  requires 'lexim:memcached.running'
+  requires 'lexim:pgclient.installed'
   requires 'lexim:sphinx.src'
+  requires 'lexim:logio.harvester'.with(:logio_server => logio_server, :node_type => 'done')
 end
