@@ -49,7 +49,7 @@ dep 'mmonit.startable', :version, :install_prefix do
 
   met? { "/etc/monit/mmonit.monitrc".p.exists? }
   meet do
-    render_erb "monit/mmonit.monitrc.erb", :to => "/etc/monit/conf/mmonit.monitrc", :perms => 700
+    render_erb "monit/mmonit.monitrc.erb", :to => "/etc/monit/conf.d/mmonit.monitrc", :perms => 700
     shell "monit reload"
   end
 end
