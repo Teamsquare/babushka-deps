@@ -152,8 +152,7 @@ dep 'zlib headers.managed' do
   }
   provides []
 end
-dep('binutils-doc.managed') {
-  provides []
-}
+dep('binutils-doc.managed') { provides [] }
 dep 'autoconf.managed'
 dep 'flex.managed'
+dep('libevent-devel.managed') { provides [] }
