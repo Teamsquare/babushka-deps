@@ -1,3 +1,5 @@
+require 'helpers'
+
 dep 'rpm monitoring', :new_relic_license do
   setup do
     must_be_root
@@ -67,8 +69,3 @@ dep 'newrelic-sysmond.managed' do
 
   provides 'nrsysmond-config'
 end
-
-def must_be_root
-  unmeetable! "This dep has to be run as root." unless shell('whoami') == 'root'
-end
-

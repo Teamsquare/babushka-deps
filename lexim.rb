@@ -25,7 +25,8 @@ dep 'bootstrap ruby', :username, :key, :new_relic_license do
     'lexim:bootstrap minimal'.with(username, key, new_relic_license),
     'lexim:build essential installed',
     'lexim:nodejs installed',
-    'lexim:ruby.src'
+    'lexim:ruby.src',
+    'lexim:bundler.gem'
   ]
 end
 
@@ -37,8 +38,7 @@ dep 'after bootstrap', :username do
 
   requires [
     'lexim:secured ssh logins',
-    'lexim:user can write to usr local',
-    'lexim:bundler.gem'
+    'lexim:user can write to usr local'
   ]
 end
 

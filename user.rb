@@ -81,3 +81,17 @@ dep('user can write to usr local') do
     shell "chown -R #{user}:#{user} /usr/local/", :sudo => true
   }
 end
+
+dep 'user and group exist', :user, :group do
+  group.default!(user)
+  met? do
+    '/etc/passwd'.p.grep(/^#{user}\:/) and
+    '/etc/group'.p.grep(/^#{group}\:/)
+  end
+
+  meet do
+    sudo "groupadd #{group}"
+    sudo "useradd -g #{group} #{user} -s /bin/false"
+  end
+
+end

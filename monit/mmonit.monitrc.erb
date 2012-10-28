@@ -1,0 +1,3 @@
+ check process mmonit with pidfile <%= prefix %>/mmonit-<%= version %>/logs/mmonit.pid
+   start program = "<%= prefix %>/mmonit-<%= version %>/bin/mmonit -d" as uid mmonit and gid mmonit
+   stop program = "<%= prefix %>/mmonit-<%= version %>/bin/mmonit stop" as uid mmonit and gid mmonit
