@@ -22,7 +22,7 @@ dep 'mmonit', :version, :install_prefix do
     must_be_root
   end
 
-  requires 'user and group exist'.with(:user => 'mmonit')
+  requires 'libzdb.src', 'user and group exist'.with(:user => 'mmonit')
 
   version.default!('2.4')
   install_prefix.default!('/usr/local')
