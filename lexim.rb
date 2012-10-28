@@ -20,7 +20,7 @@ end
 dep 'after bootstrap', :username do
   username.default!('lexim')
   setup do
-    unmeetable! "This dep must be run as the generated user from 'bootstrap lexim'" if shell('whoami') == username
+    unmeetable! "This dep must be run as the generated user from 'bootstrap lexim'" unless shell('whoami') == username
   end
 
   requires [
