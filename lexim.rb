@@ -46,6 +46,7 @@ dep 'web node', :logio_server do
   requires 'lexim:running.nginx'
   requires 'lexim:imagemagick.managed'
   requires 'lexim:pgclient.installed'
+  requires 'unicorn.startable'
   requires 'lexim:logio.harvester'.with(:logio_server => logio_server, :node_type => 'web')
 end
 
