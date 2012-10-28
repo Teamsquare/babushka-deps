@@ -6,7 +6,7 @@ dep 'redis.running' do
   end
 
   met? do
-    (summary = shell("monit summary")) && summary[/'redis'.*Running/]
+    (summary = shell("monit summary")) && summary[/'redis'/]
   end
 
   meet do
