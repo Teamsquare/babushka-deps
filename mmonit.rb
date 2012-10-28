@@ -17,22 +17,10 @@ dep 'mmonit.running', :version, :install_prefix do
   end
 end
 
-dep 'libzdb.src', :version do
-  version.default!('2.10.4')
-
-  source "http://www.tildeslash.com/libzdb/dist/libzdb-#{version}.tar.gz"
-
-  provides []
-end
-
-dep 'libzild.managed'
-
 dep 'mmonit', :version, :install_prefix do
   setup do
     must_be_root
   end
-
-  requires 'flex.managed', 'sqlite3.managed', 'libzild.managed', 'libzdb.src', 'user and group exist'.with(:user => 'mmonit')
 
   version.default!('2.4')
   install_prefix.default!('/usr/local')
