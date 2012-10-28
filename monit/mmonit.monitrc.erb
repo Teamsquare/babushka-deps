@@ -1,3 +1,5 @@
- check process mmonit with pidfile <%= install_prefix %>/mmonit-<%= version %>/logs/mmonit.pid
-   start program = "<%= install_prefix %>/mmonit-<%= version %>/bin/mmonit -d" as uid mmonit and gid mmonit
-   stop program = "<%= install_prefix %>/mmonit-<%= version %>/bin/mmonit stop" as uid mmonit and gid mmonit
+check process mmonit with pidfile <%= install_prefix %>/mmonit-<%= version %>/logs/mmonit.pid
+    start program = "<%= install_prefix %>/mmonit-<%= version %>/bin/mmonit -d"
+        as uid mmonit and gid mmonit
+    stop program = "<%= install_prefix %>/mmonit-<%= version %>/bin/mmonit stop"
+        as uid mmonit and gid mmonit
