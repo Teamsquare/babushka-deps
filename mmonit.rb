@@ -33,9 +33,9 @@ dep 'mmonit', :version, :install_prefix do
 
   meet do
     tar_file = "mmonit-#{version}-linux-x64.tar.gz"
-    shell "wget http://mmonit.com/dist/#{tar_file} /tmp/#{tar_file}"
-    shell "tar xvf /tmp/#{tar_file} -C #{install_prefix}"
-    shell "rm /tmp/#{tar_file}"
+    shell "wget http://mmonit.com/dist/#{tar_file}"
+    shell "tar xvf #{tar_file} -C #{install_prefix}"
+    shell "rm #{tar_file}"
   end
 end
 
