@@ -1,6 +1,6 @@
 user www www;
 worker_processes 8;
-pid /opt/nginx/logs/nginx.pid;
+pid /var/run/nginx.pid;
 
 events {
   worker_connections 1024;
@@ -28,17 +28,20 @@ http {
   gzip_types text/plain text/css application/json application/x-javascript text/xml application/xml application/xml+rss text/javascript;
   gzip_buffers 16 8k; # handle gzipped output up to 128kB
 
-  # Don't edit this to serve content; instead, add a vhost.
-  server {
-    listen [::]:80;
-    server_name localhost;
-
-    location / {
-      root html;
-      index index.html;
-    }
+  upstream unicorn_server {
+    server unix:/www/lexim/shared/sockets/unicorn.sock;
   }
 
-  # Pull in all enabled vhosts
-  include vhosts/on/*.conf;
+  server {
+    listen 443;
+
+    include conf.d/lexim_ssl.conf;
+    include conf.d/lexim.conf;
+  }
+
+  server {
+    listen 80;
+
+    include conf.d/lexim.conf;
+  }
 }

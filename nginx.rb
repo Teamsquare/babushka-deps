@@ -112,30 +112,17 @@ dep 'running.nginx', :nginx_prefix do
       log "There is #{result ? 'something' : 'nothing'} listening on port 80."
     }
   }
-  meet :on => :linux do
-    sudo '/etc/init.d/nginx start'
-  end
-  meet :on => :osx do
-    log_error "launchctl should have already started nginx. Check /var/log/system.log for errors."
-  end
+  meet { sudo '/etc/init.d/nginx start' }
 end
 
 dep 'startup script.nginx', :nginx_prefix do
   requires 'nginx.src'.with(:nginx_prefix => nginx_prefix)
-  on :linux do
-    requires 'rcconf.managed'
-    met? { shell("rcconf --list").val_for('nginx') == 'on' }
-    meet {
-      render_erb 'nginx/nginx.init.d.erb', :to => '/etc/init.d/nginx', :perms => '755', :sudo => true
-      sudo 'update-rc.d nginx defaults'
-    }
-  end
-  on :osx do
-    met? { !sudo('launchctl list').split("\n").grep(/org\.nginx/).empty? }
-    meet {
-      render_erb 'nginx/nginx.launchd.erb', :to => '/Library/LaunchDaemons/org.nginx.plist', :sudo => true, :comment => '<!--', :comment_suffix => '-->'
-      sudo 'launchctl load -w /Library/LaunchDaemons/org.nginx.plist'
-    }
+
+  met? { "/etc/monit/conf.d/nginx.monitrc".p.exists? }
+  meet do
+    render_erb 'nginx/nginx.init.d.erb', :to => '/etc/init.d/nginx', :perms => '755', :sudo => true
+    render_erb "monit/nginx.monitrc.erb", :to => "/etc/monit/conf.d/nginx.monitrc", :perms => 700
+    shell "monit reload"
   end
 end
 
@@ -147,6 +134,9 @@ dep 'configured.nginx', :nginx_prefix do
   }
   meet {
     render_erb 'nginx/nginx.conf.erb', :to => nginx_conf, :sudo => true
+    render_erb 'nginx/lexim.conf.erb', :to => '/etc/nginx/conf.d/lexim.conf', :perms => '755', :sudo => true
+    render_erb 'nginx/lexim_ssl.conf.erb', :to => '/etc/nginx/conf.d/lexim_ssl.conf', :perms => '755', :sudo => true
+
   }
 end
 
