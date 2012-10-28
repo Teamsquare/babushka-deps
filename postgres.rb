@@ -1,5 +1,5 @@
 dep 'pgclient.installed' do
-  requires 'postgresql-common.managed'
+  requires 'postgresql-common.managed', 'libpq-dev'
 end
 
 dep 'postgresql-common.managed' do
