@@ -7,10 +7,7 @@ dep 'libsqlite3-dev.managed' do
   provides []
 end
 dep 'sqlite3.managed'
-dep 'libzdb.src', :version do
-  version.default!('2.10.5')
-  source "http://tildeslash.com/libzdb/dist/libzdb-#{version}.tar.gz"
-end
+dep 'libzdb.managed'
 
 dep 'coreutils.managed', :for => :osx do
   provides 'gecho'
