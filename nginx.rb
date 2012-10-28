@@ -134,6 +134,8 @@ dep 'nginx.site', :name, :server_name, :proxy_host, :proxy_port do
   end
 
   meet do
+    shell "mkdir -p #{nginx_prefix}/sites-available"
+    shell "mkdir -p #{nginx_prefix}/sites-enabled"
     render_erb 'nginx/sites/proxy.conf.erb', :to => "#{nginx_prefix}/sites-available/#{name}.conf", :perms => '755', :sudo => true
     shell "ln -s #{nginx_prefix}/sites-available/#{name}.conf #{nginx_prefix}/sites-enabled/#{name}"
   end
