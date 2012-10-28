@@ -9,7 +9,7 @@ dep 'mmonit.running', :version, :install_prefix do
   end
 
   met? do
-    (summary = shell("monit summary")) && summary[/'mmonit'.*(Initializing|Running)/]
+    (summary = shell("monit summary")) && summary[/'mmonit'.*(Initializing|Running|Not monitored - start pending)/]
   end
 
   meet do
