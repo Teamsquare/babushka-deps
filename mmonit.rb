@@ -21,7 +21,7 @@ dep 'libzdb.managed' do
   requires 'libzdb sources added to apt'
 
   installs {
-    via :apt, %w[libzdb libzdb-dev]
+    via :apt, %w[libzdb7 libzdb-dev]
   }
   provides []
 end
