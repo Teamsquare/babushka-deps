@@ -128,16 +128,16 @@ dep 'startup script.nginx', :nginx_prefix do
   end
 end
 
-dep 'nginx.site', :name, :server_name, :proxy_host, :proxy_port do
+dep 'nginx.site', :site_name, :server_name, :proxy_host, :proxy_port do
   met? do
-    "#{nginx_prefix}/sites-available/#{name}.conf".p.exists? && "#{nginx_prefix}/sites-enabled/#{name}".p.exists?
+    "#{nginx_prefix}/sites-available/#{site_name}.conf".p.exists? && "#{nginx_prefix}/sites-enabled/#{site_name}".p.exists?
   end
 
   meet do
     shell "mkdir -p #{nginx_prefix}/sites-available"
     shell "mkdir -p #{nginx_prefix}/sites-enabled"
-    render_erb 'nginx/sites/proxy.conf.erb', :to => "#{nginx_prefix}/sites-available/#{name}.conf", :perms => '755', :sudo => true
-    shell "ln -s #{nginx_prefix}/sites-available/#{name}.conf #{nginx_prefix}/sites-enabled/#{name}"
+    render_erb 'nginx/sites/proxy.conf.erb', :to => "#{nginx_prefix}/sites-available/#{site_name}.conf", :perms => '755', :sudo => true
+    shell "ln -s #{nginx_prefix}/sites-available/#{site_name}.conf #{nginx_prefix}/sites-enabled/#{site_name}"
   end
 end
 
