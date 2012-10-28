@@ -1,5 +1,3 @@
-require 'helpers'
-
 dep 'rpm monitoring', :new_relic_license do
   setup do
     must_be_root

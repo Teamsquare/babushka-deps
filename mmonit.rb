@@ -1,6 +1,3 @@
-require 'helpers'
-
-
 dep 'mmonit.running', :version, :prefix do
   version.default!('2.4')
   prefix.default!('/usr/local')
