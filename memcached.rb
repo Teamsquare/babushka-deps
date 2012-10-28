@@ -1,5 +1,9 @@
 dep 'memcached.running' do
-  requires %w(memcached.managed memcached.startable)
+  requires [
+    'user and group exist'.with(:user => 'memcached'),
+    'memcached.managed',
+    'memcached.startable'
+  ]
 
   setup do
     must_be_root
@@ -29,6 +33,6 @@ dep 'memcached.startable' do
   meet do
     render_erb "monit/memcached.monitrc.erb", :to => "/etc/monit/conf.d/memcached.monitrc", :perms => 700
     render_erb "memcached/memcached.conf.erb", :to => "/etc/memcached.conf", :perms => 644
-    shell "monit reload"
+    shell "monit reload && monit monitor memcached"
   end
 end
