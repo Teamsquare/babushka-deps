@@ -1,10 +1,7 @@
 dep 'pgclient.installed' do
-  requires 'pgclient.managed'
+  requires 'libpg-dev.managed'
 end
 
-dep 'pgclient.managed' do
-  installs {
-    via :apt, 'postgresql-common.managed', 'libpg-dev.managed'
-  }
+dep 'libpg-dev.managed' do
   provides 'pg_control'
 end
