@@ -12,8 +12,8 @@ dep 'monit', :template => 'managed'
 
 dep 'monit startable' do
   requires 'monitrc configured', 'monit config is where we expect'
-  met? { sudo "grep 'startup=1' /etc/default/monit" }
-  meet { sudo "sed -i s/startup=0/startup=1/ /etc/default/monit" }
+  met? { sudo "grep 'START=yes' /etc/default/monit" }
+  meet { sudo "sed -i s/START=yes/START=no/ /etc/default/monit" }
 end
 
 dep 'monitrc configured', :monit_frequency, :monit_port, :monit_included_dir do
@@ -27,5 +27,5 @@ end
 
 dep 'monit config is where we expect' do
   met? { "/etc/default/monit".p.exists? }
-  meet { shell "echo startup=0 >> /etc/default/monit" }
+  meet { shell "echo START=no >> /etc/default/monit" }
 end
