@@ -10,7 +10,7 @@ dep 'redis.running' do
   end
 
   meet do
-    shell 'monit start redis'
+    shell '/etc/init.d/redis-server stop && monit start redis'
   end
 end
 

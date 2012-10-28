@@ -7,7 +7,6 @@ dep 'libsqlite3-dev.managed' do
   installs {
     via :apt, 'sqlite3.managed', 'libsqlite3-dev.managed'
   }
-  provides 'sqlite3.managed'
 end
 dep 'sqlite3.managed'
 dep 'libzdb.src', :version do
