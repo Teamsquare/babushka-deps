@@ -33,13 +33,6 @@ http {
   }
 
   server {
-    listen 443;
-
-    include lexim_ssl.conf;
-    include lexim.conf;
-  }
-
-  server {
     listen 80;
 
     include lexim.conf;

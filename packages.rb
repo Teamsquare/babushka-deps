@@ -7,7 +7,6 @@ dep 'libsqlite3-dev.managed' do
   provides []
 end
 dep 'sqlite3.managed'
-dep 'libzdb.managed'
 
 dep 'coreutils.managed', :for => :osx do
   provides 'gecho'

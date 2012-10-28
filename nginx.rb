@@ -135,7 +135,6 @@ dep 'configured.nginx', :nginx_prefix do
   meet {
     render_erb 'nginx/nginx.conf.erb', :to => nginx_conf, :sudo => true
     render_erb 'nginx/lexim.conf.erb', :to => nginx_prefix / "conf/lexim.conf", :perms => '755', :sudo => true
-    render_erb 'nginx/lexim_ssl.conf.erb', :to => nginx_prefix / "conf/lexim_ssl.conf", :perms => '755', :sudo => true
   }
 end
 

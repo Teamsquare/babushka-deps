@@ -17,12 +17,31 @@ dep 'mmonit.running', :version, :install_prefix do
   end
 end
 
+dep 'libzdb' do
+  requires 'libzdb sources added to apt'
+
+  installs {
+    via :apt, %w[libzdb libzdb-dev]
+  }
+end
+
+dep 'libzdb sources added to apt' do
+  met? do
+    "/etc/apt/sources.list.d/libzdb.list".p.exists?
+  end
+
+  meet do
+    shell('cat "deb http://debian.nfgd.net/debian unstable main" >> /etc/apt/sources.list.d/libzdb.list')
+    shell('apt-get update')
+  end
+end
+
 dep 'mmonit', :version, :install_prefix do
   setup do
     must_be_root
   end
 
-  requires 'flex.managed', 'sqlite3.managed', 'libsqlite3-dev.managed', 'libzdb.managed', 'user and group exist'.with(:user => 'mmonit')
+  requires 'flex.managed', 'sqlite3.managed', 'libzdb', 'user and group exist'.with(:user => 'mmonit')
 
   version.default!('2.4')
   install_prefix.default!('/usr/local')
