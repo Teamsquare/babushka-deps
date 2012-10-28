@@ -46,3 +46,27 @@ dep 'bad certificates removed' do
   met? { existing_certs.empty? }
   meet { existing_certs.each(&:rm) }
 end
+
+dep 'install public key', :key_contents do
+  met? do
+    username = shell('whoami')
+    "/home/#{username}/.ssh/authorized_keys".p.grep(key_contents)
+  end
+
+  meet do
+    username = shell('whoami')
+    shell "echo #{key_contents} >> /home/#{username}/.ssh/authorized_keys"
+  end
+end
+
+dep 'install private key', :key_name, :key_contents do
+  met? do
+    username = shell('whoami')
+    "/home/#{username}/.ssh/#{key_name}".p.exists?
+  end
+
+  meet do
+    username = shell('whoami')
+    shell "echo #{key_contents} > /home/#{username}/.ssh/#{key_name}"
+  end
+end
