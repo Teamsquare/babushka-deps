@@ -7,5 +7,5 @@ dep 'libpq-dev.managed' do
 end
 
 dep 'postgresql-client.managed' do
-  provides 'pg_control'
+  provides 'pg_config'
 end
