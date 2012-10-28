@@ -44,13 +44,13 @@ end
 
 dep 'web node', :logio_server do
   requires 'lexim:running.nginx'
-  requires 'lexim:imagemagick.src'
+  requires 'lexim:imagemagick.managed'
   requires 'lexim:pgclient.installed'
   requires 'lexim:logio.harvester'.with(:logio_server => logio_server, :node_type => 'web')
 end
 
 dep 'drone', :logio_server do
-  requires 'lexim:imagemagick.src'
+  requires 'lexim:imagemagick.managed'
   requires 'lexim:redis.running'
   requires 'lexim:memcached.running'
   requires 'lexim:pgclient.installed'
