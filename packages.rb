@@ -4,7 +4,7 @@ dep 'bundler.gem' do
   provides 'bundle'
 end
 dep 'libsqlite3-dev.managed' do
-  install {
+  installs {
     via :apt, 'sqlite3.managed', 'libsqlite3-dev.managed'
   }
   provides 'sqlite3'
