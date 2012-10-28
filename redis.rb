@@ -1,5 +1,5 @@
 dep 'redis.running' do
-  requires %w(redis.src redis.startable)
+  requires %w(redis.managed redis.startable)
 
   setup do
     must_be_root
@@ -14,9 +14,8 @@ dep 'redis.running' do
   end
 end
 
-dep 'redis.src', :version do
-  version.default!('2.6.2')
-  source "http://redis.googlecode.com/files/redis-#{version}.tar.gz"
+dep 'redis.managed' do
+  provides 'redis-server'
 end
 
 dep 'redis.startable', :version do
