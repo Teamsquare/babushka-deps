@@ -6,7 +6,6 @@ dep 'rpm monitoring', :license_key do
   requires [
     'new relic apt-get source registered',
     'new relic public key installed',
-    'apt-get updated',
     'newrelic-sysmond.managed',
     'new relic configured'.with(license_key),
     'new relic started'
@@ -39,13 +38,8 @@ dep 'new relic public key installed' do
   meet do
     shell('apt-key adv --keyserver hkp://subkeys.pgp.net --recv-keys 548C16BF')
   end
-end
 
-dep 'apt-get updated' do
-  setup do
-    must_be_root
-  end
-  meet do
+  after do
     shell 'apt-get update'
   end
 end
