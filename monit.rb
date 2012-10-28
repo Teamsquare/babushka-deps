@@ -21,7 +21,8 @@ dep 'monit.startable' do
   meet { shell "sed -i s/START=no/START=yes/ /etc/default/monit" }
 end
 
-dep 'register with mmonit', :mmontit_host, :mmonit_port, :username, :password  do
+dep 'register with mmonit', :mmonit_host, :mmonit_port, :username, :password  do
+  mmonit_host.default('localhost')
   mmonit_port.default!('8080')
   username.default('monit')
   password.default('monit')
