@@ -129,6 +129,8 @@ dep 'startup script.nginx', :nginx_prefix do
 end
 
 dep 'nginx.site', :nginx_prefix, :site_name, :server_name, :proxy_host, :proxy_port do
+  nginx_prefix.default!("/opt/nginx")
+  
   met? do
     "#{nginx_prefix}/sites-available/#{site_name}.conf".p.exists? && "#{nginx_prefix}/sites-enabled/#{site_name}".p.exists?
   end
