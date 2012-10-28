@@ -14,9 +14,7 @@ dep 'redis.running' do
   end
 end
 
-dep 'redis.managed' do
-  provides 'redis-server'
-end
+dep 'redis-server.managed'
 
 dep 'redis.startable', :version do
   setup do
