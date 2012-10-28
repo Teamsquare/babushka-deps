@@ -17,6 +17,6 @@ dep 'monit.configured', :monit_frequency, :monit_port, :monit_included_dir do
 end
 
 dep 'monit.startable' do
-  met? { '/etc/default/monit'.p.grep('START=yes') }
+  met? { '/etc/default/monit'.p.grep(/^START=yes$/) }
   meet { sudo "sed -i s/START=no/START=yes/ /etc/default/monit" }
 end
