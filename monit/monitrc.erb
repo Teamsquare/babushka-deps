@@ -8,7 +8,7 @@ set eventqueue
 basedir /var/lib/monit/events # set the base directory where events will be stored
 slots 100                     # optionally limit the queue size
 
-set mmonit http://#{username}:#{password}@#{mmonit_host}:#{mmonit_port}/collector
+set mmonit http://<%= username %>:<%= password %>@<%= mmonit_host %>:<%= mmonit_port %>/collector
 
 set httpd port <%= monit_port %>
 allow <%= username %>:<%= password %>
