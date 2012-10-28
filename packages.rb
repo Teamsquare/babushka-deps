@@ -8,9 +8,9 @@ dep 'libzdb.src', :version do
   source "http://tildeslash.com/libzdb/dist/libzdb-#{version}.tar.gz"
 
   configure_args L{
-    %w(--with-sqlite=yes).join(' ')
+    %w(--with-sqlite).join(' ')
   }
-  
+
   configure { log_shell "configure", default_configure_command }
   build { log_shell "build", "make" }
   install { log_shell "install", "make install", :sudo => true }
