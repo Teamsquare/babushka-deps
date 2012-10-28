@@ -9,6 +9,7 @@ basedir /var/lib/monit/events # set the base directory where events will be stor
 slots 100                     # optionally limit the queue size
 
 set httpd port <%= monit_port %>
+allow <%= username %>:<%= password %>
 allow localhost
 
 check system hardware
