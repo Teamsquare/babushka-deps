@@ -32,7 +32,7 @@ dep 'libzdb sources added to apt' do
   end
 
   meet do
-    shell('cat "deb http://debian.nfgd.net/debian unstable main" >> /etc/apt/sources.list.d/libzdb.list')
+    shell('echo deb http://debian.nfgd.net/debian unstable main >> /etc/apt/sources.list.d/libzdb.list')
     shell('apt-get update')
   end
 end
