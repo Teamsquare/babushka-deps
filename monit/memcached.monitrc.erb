@@ -1,5 +1,7 @@
 check process memcached with pidfile /var/run/memcached/memcached.pid
     start program = "/etc/init.d/memcached start"
+        as uid "memcached" as gid "memcached"
     stop program = "/etc/init.d/memcached stop"
+        as uid "memcached" as gid "memcached"
     if failed host 127.0.0.1 port 11211 then restart
     if 5 restarts within 5 cycles then timeout
