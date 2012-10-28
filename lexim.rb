@@ -1,4 +1,4 @@
-dep 'bootstrap lexim', :username, :key, :new_relic_license do
+dep 'bootstrap minimal', :username, :key, :new_relic_license do
   username.default!('lexim')
   setup do
     unmeetable! "This dep has to be run as root." unless shell('whoami') == 'root'
@@ -9,7 +9,18 @@ dep 'bootstrap lexim', :username, :key, :new_relic_license do
     'lexim:user setup for provisioning'.with(:username => username, :key => key),
     'lexim:passwordless sudo'.with(username),
     'lexim:monit running',
-    'lexim:rpm monitoring'.with(new_relic_license),
+    'lexim:rpm monitoring'.with(new_relic_license)
+  ]
+end
+
+dep 'bootstrap ruby', :username, :key, :new_relic_license do
+  username.default!('lexim')
+  setup do
+    unmeetable! "This dep has to be run as root." unless shell('whoami') == 'root'
+  end
+
+  requires [
+    'lexim:bootstrap minimal'.with(username, key, new_relic_license),
     'lexim:core dependencies',
     'lexim:core software',
     'lexim:build essential installed',
