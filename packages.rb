@@ -157,4 +157,6 @@ dep('binutils-doc.managed') {
 }
 dep 'autoconf.managed'
 dep 'flex.managed'
-dep('libevent-dev.managed')
+dep('libevent-dev.managed') {
+  provides []
+}
