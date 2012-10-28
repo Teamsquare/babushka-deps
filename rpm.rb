@@ -1,4 +1,4 @@
-dep 'rpm monitoring', :license_key do
+dep 'rpm monitoring', :new_relic_license do
   setup do
     must_be_root
   end
@@ -7,7 +7,7 @@ dep 'rpm monitoring', :license_key do
     'new relic apt-get source registered',
     'new relic public key installed',
     'newrelic-sysmond.managed',
-    'new relic configured'.with(license_key),
+    'new relic configured'.with(new_relic_license),
     'new relic started'
   ]
 end
@@ -44,12 +44,12 @@ dep 'new relic public key installed' do
   end
 end
 
-dep 'new relic configured', :license_key do
+dep 'new relic configured', :new_relic_license do
   setup do
     must_be_root
   end
 
-  shell "nrsysmond-config --set license_key=#{license_key}"
+  shell "nrsysmond-config --set license_key=#{new_relic_license}"
 end
 
 dep 'new relic started' do
