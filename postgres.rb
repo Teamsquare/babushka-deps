@@ -4,7 +4,7 @@ end
 
 dep 'pgclient.managed' do
   installs {
-    via :apt, 'postgresql-common.managed', 'libpq-dev.managed'
+    via :apt, 'postgresql-common.managed', 'libpg-dev.managed'
   }
   provides 'pg_control'
 end
