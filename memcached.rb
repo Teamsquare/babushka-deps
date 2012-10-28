@@ -6,7 +6,7 @@ dep 'memcached.running' do
   end
 
   met? do
-    (summary = shell("monit summary")) && summary[/'memcached'.*[Initializing|Running]/]
+    (summary = shell("monit summary")) && summary[/'memcached'.*(Initializing|Running)/]
   end
 
   meet do
