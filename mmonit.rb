@@ -17,24 +17,10 @@ dep 'mmonit.running', :version, :install_prefix do
   end
 end
 
-dep 'libzdb.managed' do
-  requires 'libzdb sources added to apt'
+dep 'libzdb.src', :version do
+  version.default!('2.10.4')
 
-  installs {
-    via :apt, %w[libzdb7 libzdb-dev]
-  }
-  provides []
-end
-
-dep 'libzdb sources added to apt' do
-  met? do
-    "/etc/apt/sources.list.d/libzdb.list".p.exists?
-  end
-
-  meet do
-    shell('echo deb http://debian.nfgd.net/debian unstable main >> /etc/apt/sources.list.d/libzdb.list')
-    shell('apt-get update')
-  end
+  source "http://www.tildeslash.com/libzdb/dist/libzdb-#{version}.tar.gz"
 end
 
 dep 'mmonit', :version, :install_prefix do
@@ -42,7 +28,7 @@ dep 'mmonit', :version, :install_prefix do
     must_be_root
   end
 
-  requires 'flex.managed', 'sqlite3.managed', 'libzdb.managed', 'user and group exist'.with(:user => 'mmonit')
+  requires 'flex.managed', 'sqlite3.managed', 'libzdb.src', 'user and group exist'.with(:user => 'mmonit')
 
   version.default!('2.4')
   install_prefix.default!('/usr/local')
