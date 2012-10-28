@@ -43,7 +43,6 @@ dep 'after bootstrap', :username do
 end
 
 dep 'web node', :logio_server do
-  requires 'bootstrap ruby'
   requires 'lexim:running.nginx'
   requires 'lexim:imagemagick.src'
   requires 'lexim:pgclient.installed'
@@ -51,7 +50,6 @@ dep 'web node', :logio_server do
 end
 
 dep 'drone', :logio_server do
-  requires 'bootstrap ruby'
   requires 'lexim:imagemagick.src'
   requires 'lexim:redis.running'
   requires 'lexim:memcached.running'
