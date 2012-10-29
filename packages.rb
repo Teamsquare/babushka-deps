@@ -43,6 +43,8 @@ dep 'image_science.gem' do
   requires 'freeimage.managed'
   provides []
 end
+
+dep 'einhorn.gem'
 dep 'iotop.managed'
 dep 'java.managed' do
   installs { via :apt, 'sun-java6-jre' }
