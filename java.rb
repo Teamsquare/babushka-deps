@@ -3,7 +3,9 @@ dep 'jre' do
 end
 
 dep 'jre.ppa' do
-  met? {}
+  met? {
+    "/etc/apt/sources.list.d/webupd8team-java-precise.list".p.exist?
+  }
   meet do
     shell "add-apt-repository ppa:webupd8team/java"
   end
