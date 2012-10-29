@@ -1,5 +1,5 @@
 dep 'jre' do
-  requires 'jre.ppa', 'agreed to java license' 'oracle-java7-installer.managed'
+  requires 'jre.ppa', 'agreed to java license', 'oracle-java7-installer.managed'
 end
 
 dep 'agreed to java license' do
