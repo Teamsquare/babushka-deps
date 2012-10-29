@@ -1,0 +1,15 @@
+description "Resque scheduler worker configuration. Run with ID"
+
+start on (local-filesystems and net-device-up IFACE=eth0)
+stop on shutdown
+
+respawn
+respawn limit 5 20
+
+script
+  PIDFILE=/www/lexim/shared/pids/resque_scheduler.pid
+  COUNT=1
+  echo $$ > $PIDFILE
+  chown lexim:lexim $PIDFILE
+  exec su -c "cd /www/lexim/current && /usr/local/bin/ruby -S bundle exec rake RAILS_ENV=production PIDFILE=$PIDFILE resque:scheduler >> /www/lexim/shared/log/resque_scheduler.log 2>&1" lexim
+end script
