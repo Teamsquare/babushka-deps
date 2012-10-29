@@ -1,12 +1,17 @@
 dep 'resque.running' do
   requires 'resque.startable'
 
-  met? do
+  setup do
+    must_be_root
+  end
 
+  met? do
+    (summary = shell("monit summary")) && summary[/'resque'.*(Initializing|Running|Not monitored - start pending)/]
   end
 
   meet do
-
+    shell 'monit start resque'
+    shell 'monit start resque_scheduler'
   end
 end
 
