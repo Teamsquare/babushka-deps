@@ -24,7 +24,7 @@ dep 'redis.configured' do
   end
 
   meet do
-    render_erb "redis/redis.conf.erb", :to => "/etc/redis/redis.conf", :perms => 700
+    render_erb "redis/redis.conf.erb", :to => "/etc/redis/redis.conf", :perms => 644
   end
 end
 

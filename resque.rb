@@ -17,7 +17,7 @@ end
 
 dep 'resque.startable' do
   requires 'einhorn.gem'
-  
+
   met? { "/etc/init/resque.conf".p.exists? && "/etc/init/resque_scheduler.conf".p.exists? && "/etc/monit/conf.d/resque.monitrc".p.exists? && "/etc/monit/conf.d/resque_scheduler.monitrc".p.exists? }
   meet do
     render_erb 'resque/resque.init.conf.erb', :to => '/etc/init/resque.conf', :perms => '755', :sudo => true
