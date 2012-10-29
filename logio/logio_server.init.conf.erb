@@ -1,0 +1,8 @@
+# logio - ensure log.io server starts on boot
+
+description     "log.io server startup script"
+
+start on runlevel [2345]
+stop on runlevel [!2345]
+
+exec log.io server start
