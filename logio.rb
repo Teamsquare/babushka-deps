@@ -21,6 +21,6 @@ dep 'logio.harvester', :logio_server, :node_type do
   end
 
   meet do
-    render_erb "logio/#{node_type}_harvester.conf.erb", :to => "/etc/log.io/harvester.conf", :perms => 700
+    render_erb "logio/#{node_type}_harvester.conf.erb", :to => "/etc/log.io/harvester.conf", :perms => 644, :comment => '//', :comment_suffix => ''
   end
 end
