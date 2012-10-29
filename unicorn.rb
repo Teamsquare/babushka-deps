@@ -2,7 +2,9 @@ dep 'unicorn.running' do
   requires %w(unicorn.startable)
 end
 
-dep 'unicorn.startable' do
+dep 'unicorn.startable', :user do
+  user.default!('root')
+  
   setup do
     must_be_root
   end

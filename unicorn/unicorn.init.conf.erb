@@ -5,4 +5,6 @@ description     "unicorn startup script"
 start on runlevel [2345]
 stop on runlevel [!2345]
 
+setuid <%= user %>
+
 exec /etc/init.d/unicorn start
