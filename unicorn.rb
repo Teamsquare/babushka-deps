@@ -4,7 +4,7 @@ end
 
 dep 'unicorn.startable', :user do
   user.default!('root')
-  
+
   setup do
     must_be_root
   end
