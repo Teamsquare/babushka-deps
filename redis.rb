@@ -1,5 +1,5 @@
 dep 'redis.running' do
-  requires %w(redis.startable)
+  requires ['monit running', redis.startable]
 
   setup do
     must_be_root
