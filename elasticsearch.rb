@@ -23,7 +23,7 @@ dep 'elasticsearch', :version, :install_prefix do
   end
 
   met? do
-    "#{install_prefix}/elasticsearch-#{version}/bin/elasticsearch".p.exists?
+    "#{install_prefix}/elasticsearch/bin/elasticsearch".p.exists?
   end
 
   meet do
