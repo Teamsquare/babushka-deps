@@ -1,4 +1,5 @@
 dep 'kibana', :install_prefix do
+  install_prefix.default!('/usr/local')
   setup do
     must_be_root
   end
