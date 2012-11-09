@@ -1,15 +1,17 @@
 input {
   file {
-    type => pg91
-    path => ["/var/log/postgresql/postgresql-9.1-main.log"]
+    type => "webapp",
+    path => "/www/lexim/shared/log/*"
   }
 }
 
 output {
-   redis {
-       host => "localhost"
-       data_type => "list"
-       key => "logstash"
-       timeout => 120
-   }
+  stdout { debug => true debug_format => "json"}
+
+  redis {
+    host => "10.188.5.120"
+    data_type => "list"
+    key => "logstash"
+    timeout => 120
+  }
 }

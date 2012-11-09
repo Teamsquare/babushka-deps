@@ -1,15 +1,16 @@
 input {
   redis {
-    host => "localhost"
+    host => "127.0.0.1"
     type => "redis-input"
     # these settings should match the output of the agent
     data_type => "list"
     key => "logstash"
+    message_format => "json_event"
   }
 }
 
 output {
   elasticsearch {
-    host => "localhost"
+    host => "127.0.0.1"
   }
 }
