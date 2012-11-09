@@ -23,7 +23,7 @@ dep 'logstash.running', :version, :install_prefix, :conf_prefix, :agent_role do
   requires [
                'jre',
                'logstash'.with(version, install_prefix),
-               'logstash'.with(version, install_prefix, agent_role),
+               'logstash.configured'.with(version, install_prefix, agent_role),
                'logstash.startable'.with(version, install_prefix, agent_role),
            ]
 
@@ -54,7 +54,7 @@ dep 'logstash', :version, :install_prefix do
   end
 end
 
-dep 'logstash', :version, :conf_prefix, :agent_role do
+dep 'logstash.configured', :version, :conf_prefix, :agent_role do
   agent_role.default!('indexer')
 
   setup do
