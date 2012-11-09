@@ -4,8 +4,8 @@ dep 'elasticsearch.running', :version, :install_prefix do
 
   requires [
     'jre',
-    'elasticsearch'.with(version, install_previx),
-    'elasticsearch.startable'.with(version, install_previx),
+    'elasticsearch'.with(version, install_prefix),
+    'elasticsearch.startable'.with(version, install_prefix),
   ]
 
   met? do
