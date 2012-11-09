@@ -66,7 +66,7 @@ dep 'logstash.configured', :version, :conf_prefix, :agent_role do
   end
 
   meet do
-    unless conf_prefix.to_s.exists?
+    unless conf_prefix.to_s.p.exists?
       shell "mkdir -p #{conf_prefix}"
     end
 
