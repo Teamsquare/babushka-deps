@@ -62,11 +62,11 @@ dep 'logstash.configured', :version, :install_prefix, :conf_prefix, :agent_role 
   end
 
   met? do
-    conf_prefix.to_s.p.exists? && "#{conf_prefix}/logstash-#{agent_role}.conf".p.exists? && "/etc/init.d/logstash-#{agent_role}".p.exists?
+    conf_prefix.p.exists? && "#{conf_prefix}/logstash-#{agent_role}.conf".p.exists? && "/etc/init.d/logstash-#{agent_role}".p.exists?
   end
 
   meet do
-    unless conf_prefix.to_s.p.exists?
+    unless conf_prefix.p.exists?
       shell "mkdir -p #{conf_prefix}"
     end
 
