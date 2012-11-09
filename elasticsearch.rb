@@ -41,6 +41,8 @@ dep 'elasticsearch.startable', :version, :install_prefix do
     must_be_root
   end
 
+  requires 'monit running'
+
   met? { "/etc/monit/conf.d/elasticsearch.monitrc".p.exists? }
   meet do
     shell "#{install_prefix}/elasticsearch/bin/service/elasticsearch install"
