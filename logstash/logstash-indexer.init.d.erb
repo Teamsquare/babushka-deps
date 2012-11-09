@@ -95,11 +95,8 @@ case "$1" in
     do_stop
     do_start
     ;;
-  status)
-    status $PID
-    ;;
   *)
-    echo "Usage: $SCRIPTNAME {start|stop|status|restart}" >&2
+    echo "Usage: $SCRIPTNAME {start|stop|restart}" >&2
     exit 3
     ;;
 esac
