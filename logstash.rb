@@ -62,16 +62,19 @@ dep 'logstash.configured', :version, :conf_prefix, :agent_role do
   end
 
   met? do
-    conf_prefix.p.exists? && "#{conf_prefix}/logstash.#{agent_role}.conf".p.exists?
+    conf_prefix.to_s.p.exists? && "#{conf_prefix}/logstash.#{agent_role}.conf".p.exists? && "/etc/init.d/logstash-#{agent_role}".p.exists?
   end
 
   meet do
-    unless conf_prefix.p.exists?
+    unless conf_prefix.to_s.exists?
       shell "mkdir -p #{conf_prefix}"
     end
 
     unless "#{conf_prefix}/logstash.#{agent_role}.conf".p.exists?
       render_erb "monit/logstash-#{agent_role}.monitrc.erb", :to => "/etc/monit/conf.d/logstash-#{agent_role}.monitrc", :perms => 700
+    end
+
+    unless "/etc/init.d/logstash-#{agent_role}".p.exists?
       render_erb "logstash/logstash-#{agent_role}.init.d.erb", :to => "/etc/init.d/logstash-#{agent_role}", :perms => 700
     end
   end
