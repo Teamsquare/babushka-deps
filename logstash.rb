@@ -1,7 +1,7 @@
 dep 'logstash.indexer.running', :version, :install_prefix, :conf_prefix do
   version.default!('1.1.4')
   install_prefix.default!('/usr/local')
-  config_prefix.default!('/etc/logstash')
+  conf_prefix.default!('/etc/logstash')
 
   requires 'logstash.running'.with(version, install_prefix, conf_prefix, 'indexer')
 end
@@ -9,7 +9,7 @@ end
 dep 'logstash.shipper.running', :version, :install_prefix, :conf_prefix do
   version.default!('1.1.4')
   install_prefix.default!('/usr/local')
-  config_prefix.default!('/etc/logstash')
+  conf_prefix.default!('/etc/logstash')
 
   requires 'logstash.running'.with(version, install_prefix, conf_prefix, 'shipper')
 end
@@ -17,7 +17,7 @@ end
 dep 'logstash.running', :version, :install_prefix, :conf_prefix, :agent_role do
   version.default!('1.1.4')
   install_prefix.default!('/usr/local')
-  config_prefix.default!('/etc/logstash')
+  conf_prefix.default!('/etc/logstash')
   agent_role.default!('indexer')
 
   requires [
