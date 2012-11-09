@@ -1,0 +1,15 @@
+input {
+  redis {
+    host => "localhost"
+    type => "redis-input"
+    # these settings should match the output of the agent
+    data_type => "list"
+    key => "logstash"
+  }
+}
+
+output {
+  elasticsearch {
+    host => "localhost"
+  }
+}

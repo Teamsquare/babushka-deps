@@ -1,0 +1,15 @@
+input {
+  file {
+    type => pg91
+    path => ["/var/log/postgresql/postgresql-9.1-main.log"]
+  }
+}
+
+output {
+   redis {
+       host => "localhost"
+       data_type => "list"
+       key => "logstash"
+       timeout => 120
+   }
+}
