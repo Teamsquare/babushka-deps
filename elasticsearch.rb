@@ -2,7 +2,11 @@ dep 'elasticsearch.running', :version, :install_prefix do
   version.default!('0.19.11')
   install_prefix.default!('/usr/local')
 
-  requires %w(elasticsearch elasticsearch.startable elasticsearch.started)
+  requires [
+    'jre',
+    'elasticsearch'.with(version, install_previx),
+    'elasticsearch.startable'.with(version, install_previx),
+  ]
 
   met? do
     (summary = shell("monit summary")) && summary[/'elasticsearch'.*(Initializing|Running|Not monitored - start pending)/]
