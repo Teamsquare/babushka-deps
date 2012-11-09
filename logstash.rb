@@ -54,7 +54,7 @@ dep 'logstash', :version, :install_prefix do
   end
 end
 
-dep 'logstash.configured', :version, :conf_prefix, :agent_role do
+dep 'logstash.configured', :version, :install_prefix, :conf_prefix, :agent_role do
   agent_role.default!('indexer')
 
   setup do
@@ -75,7 +75,7 @@ dep 'logstash.configured', :version, :conf_prefix, :agent_role do
     end
 
     unless "/etc/init.d/logstash-#{agent_role}".p.exists?
-      render_erb "logstash/logstash-#{agent_role}.init.d.erb", :to => "/etc/init.d/logstash-#{agent_role}", :perms => 700
+      render_erb "logstash/logstash.init.d.erb", :to => "/etc/init.d/logstash-#{agent_role}", :perms => 700
     end
   end
 end
