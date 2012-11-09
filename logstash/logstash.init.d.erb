@@ -3,16 +3,16 @@
 # Logstash Start/Stop logstash <%= agent_role %>
 #
 # chkconfig: 345 99 99
-# description: Logstash <%= agent_role.upcase %>
-# processname: logstash-<%= agent_role.downcase %>
+# description: Logstash <%= agent_role %>
+# processname: logstash-<%= agent_role %>
 
 logstash_bin="/usr/bin/java -jar <%= install_prefix %>/logstash/logstash-<%= version %>-monolithic.jar"
-logstash_conf="<%= conf_prefix %>/<%= agent_role.downcase %>.conf"
-logstash_log="/var/log/logstash/logstash-<%= agent_role.downcase %>.log"
+logstash_conf="<%= conf_prefix %>/<%= agent_role %>.conf"
+logstash_log="/var/log/logstash/logstash-<%= agent_role %>.log"
 NICE_LEVEL="-n 19"
 
 find_logstash_process () {
-    PIDTEMP=`ps ux | grep logstash-<%= agent_role.downcase %> | grep java | awk '{ print $2 }'`
+    PIDTEMP=`ps ux | grep logstash-<%= agent_role %> | grep java | awk '{ print $2 }'`
     # Pid not found
     if [ "x$PIDTEMP" = "x" ]; then
         PID=-1
