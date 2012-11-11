@@ -34,7 +34,7 @@ dep 'bamboo', :version, :install_prefix, :home_directory do
     shell "mv #{install_prefix}/*bamboo* #{install_prefix}/bamboo"
     shell "rm /tmp/#{tar_file}"
     shell "mkdir -p #{home_directory}"
-    shell "echo 'bamboo.home=#{home_directory}' >> #{install_prefix}/webapp/WEB-INF/classes/bamboo-init.properties"
+    shell "echo 'bamboo.home=#{home_directory}' >> #{install_prefix}/bamboo/webapp/WEB-INF/classes/bamboo-init.properties"
   end
 end
 
