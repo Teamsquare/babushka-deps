@@ -24,7 +24,7 @@ dep 'bamboo', :version, :install_prefix, :home_directory do
   end
 
   met? do
-    "#{install_prefix}/bamboo/bin/elasticsearch".p.exists?
+    "#{install_prefix}/bamboo/bamboo.sh".p.exists?
   end
 
   meet do
