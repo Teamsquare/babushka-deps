@@ -35,6 +35,7 @@ dep 'bamboo', :version, :install_prefix, :home_directory do
     shell "rm /tmp/#{tar_file}"
     shell "mkdir -p #{home_directory}"
     shell "echo 'bamboo.home=#{home_directory}' >> #{install_prefix}/bamboo/webapp/WEB-INF/classes/bamboo-init.properties"
+    shell "sed -i s/wrapper.app.parameter.2=8085/wrapper.app.parameter.2=80/ #{install_prefix}/bamboo/conf/wrapper.conf"
   end
 end
 
