@@ -29,7 +29,7 @@ dep 'bamboo', :version, :install_prefix, :home_directory do
 
   meet do
     tar_file = "atlassian-bamboo-#{version}.tar.gz"
-    shell "wget http://www.atlassian.com/software/bamboo/downloads/binary#{tar_file} -P /tmp"
+    shell "wget http://www.atlassian.com/software/bamboo/downloads/binary/#{tar_file} -P /tmp"
     shell "tar xvf /tmp/#{tar_file} -C #{install_prefix}"
     shell "mv #{install_prefix}/*bamboo* #{install_prefix}/bamboo"
     shell "rm /tmp/#{tar_file}"
