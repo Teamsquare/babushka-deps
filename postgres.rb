@@ -11,9 +11,9 @@ dep 'postgresql-client.managed' do
 end
 
 dep 'postgres.installed' do
-  requires 'postgres.managed'
+  requires 'postgresql.managed'
 end
 
-dep 'postgres.managed' do
+dep 'postgresql.managed' do
 
 end
