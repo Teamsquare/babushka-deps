@@ -9,3 +9,11 @@ end
 dep 'postgresql-client.managed' do
   provides 'pg_config'
 end
+
+dep 'postgres.installed' do
+  requires 'postgres.managed'
+end
+
+dep 'postgres.managed' do
+
+end
