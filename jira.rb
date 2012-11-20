@@ -7,7 +7,8 @@ dep 'jira.installed', :version, :install_prefix, :home_directory, :jira_user do
   requires [
                'jre',
                'jira.user'.with(jira_user),
-               'jira'.with(version, install_prefix, home_directory),
+               'jira'.with(version, install_prefix),
+               'jira.home_directory_set'.with(home_directory),
                'jira.permissions'.with(install_prefix, home_directory, jira_user)
            ]
 end
@@ -28,7 +29,7 @@ dep 'jira.user', :username do
   }
 end
 
-dep 'jira', :version, :install_prefix, :home_directory do
+dep 'jira', :version, :install_prefix do
   setup do
     must_be_root
   end
@@ -43,6 +44,19 @@ dep 'jira', :version, :install_prefix, :home_directory do
     shell "tar xvf /tmp/#{tar_file} -C #{install_prefix}"
     shell "mv #{install_prefix}/*jira* #{install_prefix}/jira"
     shell "rm /tmp/#{tar_file}"
+  end
+end
+
+dep 'jira.home_directory_set', :home_directory do
+  setup do
+    must_be_root
+  end
+
+  met? do
+    "#{install_prefix}/jira/atlassian-jira/WEB-INF/classes/jira-application.properties".p.grep(/#{home_directory}/)
+  end
+
+  meet do
     shell "mkdir -p #{home_directory}"
     shell "echo 'jira.home=#{home_directory}' > #{install_prefix}/jira/atlassian-jira/WEB-INF/classes/jira-application.properties"
   end
@@ -51,7 +65,7 @@ end
 dep 'jira.permissions', :install_prefix, :home_directory, :username do
   met? do
     output = shell?("stat #{install_prefix}/jira/logs | grep Uid | grep #{username}")
-    
+
     !output.nil?
   end
 
