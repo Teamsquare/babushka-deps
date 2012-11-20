@@ -48,6 +48,18 @@ dep 'jira', :version, :install_prefix, :home_directory do
   end
 end
 
-dep 'jira.permissions', :username do
+dep 'jira.permissions', :username, :home_directory do
+  met? do
+    output = shell?("stat logs | grep Uid | grep #{username}")
 
+    output.to_s.length
+  end
+
+  meet do
+    shell "chown -R root:root #{install_prefix}/jira/"
+    shell "chown -R #{username}:#{username} #{install_prefix}/jira/logs"
+    shell "chown -R #{username}:#{username} #{install_prefix}/jira/temp"
+    shell "chown -R #{username}:#{username} #{install_prefix}/jira/work"
+    shell "chown -R #{username}:#{username} #{home_directory}"
+  end
 end
