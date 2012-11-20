@@ -6,7 +6,7 @@ dep 'jira.installed', :version, :install_prefix, :home_directory, :jira_user do
 
   requires [
                'jre',
-               'jira.user'.with(username_name),
+               'jira.user'.with(jira_user),
                'jira'.with(version, install_prefix, home_directory),
                'jira.permissions'
            ]
