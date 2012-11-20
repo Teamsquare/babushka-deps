@@ -11,10 +11,12 @@ dep 'bootstrap minimal', :username, :key, :new_relic_license do
     'lexim:rpm monitoring'.with(new_relic_license),
     'lexim:core dependencies',
     'lexim:core software'
+  ]
 end
 
 dep 'bootstrap ruby', :username, :key, :new_relic_license do
   username.default!('lexim')
+
   setup do
     unmeetable! "This dep has to be run as root." unless shell('whoami') == 'root'
   end
@@ -30,6 +32,7 @@ end
 
 dep 'after bootstrap', :username do
   username.default!('lexim')
+
   setup do
     unmeetable! "This dep must be run as the generated user from 'bootstrap lexim'" unless shell('whoami') == username
   end
