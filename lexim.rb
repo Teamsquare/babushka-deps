@@ -8,7 +8,6 @@ dep 'bootstrap minimal', :username, :key, :new_relic_license do
     'lexim:system'.with(:host_name => shell('hostname -f')),
     'lexim:user setup for provisioning'.with(:username => username, :key => key),
     'lexim:passwordless sudo'.with(username),
-    'lexim:monit running',
     'lexim:rpm monitoring'.with(new_relic_license),
     'lexim:core dependencies',
     'lexim:core software'
@@ -43,6 +42,7 @@ dep 'after bootstrap', :username do
 end
 
 dep 'web node', :logio_server do
+  requires 'lexim:monit running'
   requires 'lexim:running.nginx'
   requires 'lexim:imagemagick.managed'
   requires 'lexim:pgclient.installed'
@@ -51,6 +51,7 @@ dep 'web node', :logio_server do
 end
 
 dep 'drone', :logio_server do
+  requires 'lexim:monit running'
   requires 'lexim:imagemagick.managed'
   requires 'lexim:redis.running'
   requires 'lexim:memcached.running'
