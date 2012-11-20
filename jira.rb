@@ -51,8 +51,8 @@ end
 dep 'jira.permissions', :install_prefix, :home_directory, :username do
   met? do
     output = shell?("stat #{install_prefix}/jira/logs | grep Uid | grep #{username}")
-
-    output.to_s.length
+    
+    !output.nil?
   end
 
   meet do
