@@ -8,23 +8,23 @@ dep 'jira.installed', :version, :install_prefix, :home_directory, :jira_user do
                'jre',
                'jira.user'.with(jira_user),
                'jira'.with(version, install_prefix, home_directory),
-               'jira.permissions'
+               'jira.permissions'.with(jira_user)
            ]
 end
 
-dep 'jira.user', :username_name do
+dep 'jira.user', :username do
   setup do
     must_be_root
   end
 
   met? {
-    '/etc/passwd'.p.grep(/^#{username_name}\:/) and
-        '/etc/group'.p.grep(/^#{username_name}\:/)
+    '/etc/passwd'.p.grep(/^#{username}\:/) and
+        '/etc/group'.p.grep(/^#{username}\:/)
   }
 
   meet {
-    shell "groupadd #{username_name}"
-    shell "useradd --create-home --comment 'Account for running JIRA' -g #{username_name} -s /bin/bash #{username_name}"
+    shell "groupadd #{username}"
+    shell "useradd --create-home --comment 'Account for running JIRA' -g #{username} -s /bin/bash #{username}"
   }
 end
 
@@ -44,10 +44,10 @@ dep 'jira', :version, :install_prefix, :home_directory do
     shell "mv #{install_prefix}/*jira* #{install_prefix}/jira"
     shell "rm /tmp/#{tar_file}"
     shell "mkdir -p #{home_directory}"
-    shell "echo 'jira.home=#{home_directory}' > #{install_prefix}/atlassian-jira/webapp/WEB-INF/classes/jira-application.properties"
+    shell "echo 'jira.home=#{home_directory}' > #{install_prefix}/jira/atlassian-jira/WEB-INF/classes/jira-application.properties"
   end
 end
 
-dep 'jira.permissions' do
+dep 'jira.permissions', :username do
 
 end
