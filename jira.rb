@@ -8,7 +8,7 @@ dep 'jira.installed', :version, :install_prefix, :home_directory, :jira_user do
                'jre',
                'jira.user'.with(jira_user),
                'jira'.with(version, install_prefix, home_directory),
-               'jira.permissions'.with(jira_user)
+               'jira.permissions'.with(jira_user, home_directory)
            ]
 end
 
