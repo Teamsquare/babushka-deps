@@ -11,7 +11,6 @@ dep 'bootstrap minimal', :username, :key, :new_relic_license do
     'lexim:rpm monitoring'.with(new_relic_license),
     'lexim:core dependencies',
     'lexim:core software'
-  ]
 end
 
 dep 'bootstrap ruby', :username, :key, :new_relic_license do
