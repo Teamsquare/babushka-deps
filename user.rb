@@ -11,10 +11,11 @@ dep 'dot files', :username, :github_user, :repo do
   }
 end
 
-dep 'user can ssh without password', :username, :key, :home_dir_base do
+dep 'user can ssh without password', :username, :key, :home_dir_base, :admin do
   home_dir_base.default!('/home')
+  admin.default!(true)
   requires [
-               'user exists'.with(:username => username, :home_dir_base => home_dir_base),
+               'user exists'.with(:username => username, :home_dir_base => home_dir_base, :admin => admin),
                'passwordless ssh logins'.with(username, key)
            ]
 end
@@ -43,7 +44,8 @@ dep 'user exists with password', :username, :password do
   end
 end
 
-dep 'user exists', :username, :home_dir_base do
+dep 'user exists', :username, :home_dir_base, :admin do
+  admin.default!(true)
   home_dir_base.default(username['.'] ? '/srv/http' : '/home')
 
   on :osx do
@@ -70,7 +72,7 @@ dep 'user exists', :username, :home_dir_base do
     met? { '/etc/passwd'.p.grep(/^#{username}:/) }
     meet {
       sudo "mkdir -p #{home_dir_base}" and
-          sudo "useradd -m -s /bin/bash -b #{home_dir_base} -G admin #{username}" and
+          sudo "useradd -m -s /bin/bash -b #{home_dir_base} -G #{admin ? 'admin' : 'users'} #{username}" and
           sudo "chmod 701 #{home_dir_base / username}"
     }
   end
