@@ -19,6 +19,18 @@ dep 'crowd.running', :version, :install_prefix, :home_directory, :use_port_80 do
   end
 end
 
+dep 'crowd.installed', :version, :install_prefix, :home_directory, :use_port_80 do
+  version.default!('2.5.2')
+  install_prefix.default!('/usr/local')
+  home_directory.default!('/etc/crowd')
+  use_port_80.default!(false)
+
+  requires [
+               'jre',
+               'crowd'.with(version, install_prefix, home_directory, use_port_80)
+  ]
+end
+
 dep 'crowd', :version, :install_prefix, :home_directory, :use_port_80 do
   use_port_80.default!(false)
 

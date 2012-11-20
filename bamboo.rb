@@ -18,6 +18,18 @@ dep 'bamboo.running', :version, :install_prefix, :home_directory do
   end
 end
 
+dep 'bamboo.installed', :version, :install_prefix, :home_directory do
+  version.default!('4.3.1')
+  install_prefix.default!('/usr/local')
+  home_directory.default!('/etc/bamboo')
+
+  requires [
+               'jre',
+               'bamboo'.with(version, install_prefix, home_directory),
+  ]
+end
+
+
 dep 'bamboo', :version, :install_prefix, :home_directory do
   setup do
     must_be_root
