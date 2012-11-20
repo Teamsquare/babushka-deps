@@ -10,6 +10,11 @@ dep 'postgresql-client.managed' do
   provides 'pg_config'
 end
 
+dep 'postgres' do
+  requires 'pgclient.installed'
+  requires 'postgres.installed'
+end
+
 dep 'postgres.installed' do
   requires 'postgresql.managed'
 end
