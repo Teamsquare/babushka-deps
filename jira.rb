@@ -8,7 +8,7 @@ dep 'jira.installed', :version, :install_prefix, :home_directory, :jira_user do
                'jre',
                'jira.user'.with(jira_user),
                'jira'.with(version, install_prefix, home_directory),
-               'jira.permissions'.with(jira_user, home_directory)
+               'jira.permissions'.with(install_prefix, home_directory, jira_user)
            ]
 end
 
@@ -48,7 +48,7 @@ dep 'jira', :version, :install_prefix, :home_directory do
   end
 end
 
-dep 'jira.permissions', :username, :home_directory do
+dep 'jira.permissions', :install_prefix, :home_directory, :username do
   met? do
     output = shell?("stat #{install_prefix}/jira/logs | grep Uid | grep #{username}")
 
