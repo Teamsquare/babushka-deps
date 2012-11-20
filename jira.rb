@@ -8,7 +8,7 @@ dep 'jira.installed', :version, :install_prefix, :home_directory, :jira_user do
                'jre',
                'jira.user'.with(jira_user),
                'jira'.with(version, install_prefix),
-               'jira.home_directory_set'.with(home_directory),
+               'jira.home_directory_set'.with(install_prefix, home_directory),
                'jira.permissions'.with(install_prefix, home_directory, jira_user)
            ]
 end
@@ -47,7 +47,7 @@ dep 'jira', :version, :install_prefix do
   end
 end
 
-dep 'jira.home_directory_set', :home_directory do
+dep 'jira.home_directory_set', :install_prefix, :home_directory do
   setup do
     must_be_root
   end
