@@ -1,5 +1,15 @@
-dep 'jre' do
-  requires 'jre.ppa', 'agreed to java license', 'oracle-java7-installer.managed'
+dep 'jre', :major_version do
+  major_version.default!(7)
+
+  requires 'jre.ppa', 'agreed to java license'
+
+  if major_version == 7
+    requires 'oracle-java7-installer.managed'
+  end
+
+  if major_version == 6
+    requires 'oracle-java6-installer.managed'
+  end
 end
 
 dep 'agreed to java license' do
@@ -22,6 +32,10 @@ dep 'jre.ppa' do
   after {
     shell "apt-get update"
   }
+end
+
+dep 'oracle-java6-installer.managed' do
+  provides 'java'
 end
 
 dep 'oracle-java7-installer.managed' do
