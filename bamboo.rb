@@ -4,7 +4,7 @@ dep 'bamboo.running', :version, :install_prefix, :home_directory do
   home_directory.default!('/etc/bamboo')
 
   requires [
-               'jre',
+               'jre'.with(6),
                'bamboo'.with(version, install_prefix, home_directory),
                'bamboo.startable'.with(version, install_prefix)
            ]

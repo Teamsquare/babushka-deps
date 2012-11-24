@@ -26,7 +26,7 @@ dep 'crowd.installed', :version, :install_prefix, :home_directory, :use_port_80 
   use_port_80.default!(false)
 
   requires [
-               'jre',
+               'jre'.with(6),
                'crowd'.with(version, install_prefix, home_directory, use_port_80)
   ]
 end
