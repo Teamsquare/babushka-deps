@@ -43,7 +43,7 @@ dep 'crucible', :version, :install_prefix do
     tar_file = "crucible-#{version}.zip"
 
     shell "wget http://www.atlassian.com/software/crucible/downloads/binary/#{tar_file} -P /tmp"
-    shell "unzip /tmp/#{tar_file}"
+    shell "unzip /tmp/#{tar_file} -d /tmp"
     shell "mv /tmp/fecru-#{version} #{install_prefix}/crucible"
     shell "rm /tmp/#{tar_file}"
     shell "rm -rf /tmp/fecru-#{version}"
