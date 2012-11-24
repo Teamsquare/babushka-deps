@@ -6,6 +6,7 @@ dep 'crucible.installed', :version, :install_prefix, :home_directory, :crucible_
 
   requires [
                'jre'.with(6),
+               'unzip.managed',
                'crucible.user'.with(crucible_user),
                'crucible'.with(version, install_prefix),
                'crucible.home_directory_set'.with(install_prefix, home_directory),

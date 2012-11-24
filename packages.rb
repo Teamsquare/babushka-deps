@@ -159,3 +159,4 @@ dep('libevent-dev.managed') {
   provides []
 }
 dep 'memcached.managed'
+dep 'unzip.managed'
