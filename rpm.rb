@@ -19,7 +19,7 @@ dep 'new relic package source registered' do
 
   on :apt do
     met? do
-      !shell('rpm -q newrelic-repo-5-3.noarch').grep(/is not installed/).empty?
+      shell('rpm -q newrelic-repo-5-3.noarch').grep(/is not installed/).empty?
     end
 
     meet do
