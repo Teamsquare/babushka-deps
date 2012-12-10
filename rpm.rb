@@ -29,9 +29,14 @@ dep 'new relic package source registered' do
 
   on :yum do
     met? do
-      (output = shell("rpm -q newrelic-repo-5-3.noarch"))
-      log "Output is #{output}"
-      output.grep(/is not installed/).empty?
+      installed = false
+
+      shell("rpm -q newrelic-repo-5-3.noarch") do |cmd|
+        throw cmd
+        installed = cmd.ok?
+      end
+
+      installed
     end
 
     meet do
