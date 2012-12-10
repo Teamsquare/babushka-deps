@@ -1,4 +1,10 @@
 dep 'core software' do
+  setup do
+    if [:centos].include?(Babushka.host.flavour)
+      sudo("rpm -Uvh http://download3.fedora.redhat.com/pub/epel/6/x86_64/epel-release-6-7.noarch.rpm")
+    end
+  end
+  
   requires {
     on :linux, 'vim.managed', 'curl.managed', 'htop.managed', 'jnettop.managed', 'screen.managed', 'nmap.managed', 'tree.managed'
   }
