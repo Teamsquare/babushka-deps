@@ -25,7 +25,7 @@ dep 'public key' do
   meet { log shell("ssh-keygen -t dsa -f ~/.ssh/id_dsa -N ''") }
 end
 
-dep 'bad certificates removed' do
+dep 'bad certificates removed', :for => [:debian, :ubuntu] do
   def cert_names
     %w[
       DigiNotar_Root_CA
@@ -38,11 +38,6 @@ dep 'bad certificates removed' do
       cert.exists?
     }
   end
-  setup {
-    unless [:debian, :ubuntu].include?(Babushka.host.flavour)
-      unmeetable! "Not sure where to find certs on a #{Babushka.host.description} system."
-    end
-  }
   met? { existing_certs.empty? }
   meet { existing_certs.each(&:rm) }
 end
