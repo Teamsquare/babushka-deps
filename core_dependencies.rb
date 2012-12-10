@@ -42,5 +42,5 @@ packages_without_binary = [
 }
 
 dep('core dependencies') {
-  requires (packages.reject(exclude_on_centos) + packages_without_binary.reject(exclude_on_centos)).map { |p| "#{p}.managed" }
+  requires (packages.reject{ |p| exclude_on_centos.include? p} + packages_without_binary.reject{ |p| exclude_on_centos.include? p}).map { |p| "#{p}.managed" }
 }
