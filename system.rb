@@ -70,7 +70,15 @@ dep 'secured ssh logins' do
       shell("sed -i'' -e 's/^[# ]*#{option}\\W*\\w*$/#{option} no/' #{ssh_conf_path(:sshd)}")
     }
   }
-  after { shell "/etc/init.d/ssh restart" }
+  after {
+    if [:debian, :ubuntu].include?(Babushka.host.flavour)
+      shell "/etc/init.d/ssh restart"
+    elsif [:centos].include?(Babushka.host.flavour)
+      shell "/etc/init.d/sshd restart"
+    else
+      log "not sure how to restart ssh daemon on this host type"
+    end
+  }
 end
 
 dep 'lax host key checking' do
