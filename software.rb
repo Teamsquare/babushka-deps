@@ -21,6 +21,7 @@ end
 dep 'wget.managed' do
   installs {
     via :apt, 'wget'
+    via :yum, 'wget'
   }
   provides "wget"
 end
@@ -28,6 +29,7 @@ end
 dep('vim.managed') {
   installs {
     via :apt, 'vim'
+    via :yum, 'vim'
   }
   provides 'vim'
 }
