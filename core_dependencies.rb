@@ -42,5 +42,5 @@ packages_without_binary = [
 }
 
 dep('core dependencies') {
-  requires (packages.reject { |p| [:centos].include?(Babushka.host.flavour) && exclude_on_centos.include?(p) } + packages_without_binary.reject { |p| [:centos].include?(Babushka.host.flavour) && exclude_on_centos.include? p }).map { |p| "#{p}.managed" }
+  requires (packages.reject { |p| [:centos].include?(Babushka.host.flavour) && exclude_on_centos.include?(p) } + packages_without_binary.reject { |p| [:centos].include?(Babushka.host.flavour) && exclude_on_centos.include?(p) }).map { |p| "#{p}.managed" }
 }
