@@ -32,8 +32,7 @@ dep 'new relic package source registered' do
       installed = false
 
       shell("rpm -q newrelic-repo-5-3.noarch") do |cmd|
-        throw cmd
-        installed = cmd.ok?
+        installed = cmd.stdout.grep(/is not installed/).empty?
       end
 
       installed
