@@ -1,3 +1,5 @@
+exclude_on_centos = %w(whois)
+
 packages = [
     'lsof',
     'jwhois',
@@ -15,12 +17,6 @@ packages = [
     'htop',
     'curl'
 ].each do |package|
-  exclude_on_centos = %w(whois)
-
-  if [:centos].include?(Babushka.host.flavour)
-    next if exclude_on_centos.include? package
-  end
-
   dep [package, 'managed'].join('.')
 end
 
@@ -46,5 +42,5 @@ packages_without_binary = [
 }
 
 dep('core dependencies') {
-  requires (packages + packages_without_binary).map { |p| "#{p}.managed" }
+  requires (packages.reject(exclude_on_centos) + packages_without_binary.reject(exclude_on_centos)).map { |p| "#{p}.managed" }
 }
