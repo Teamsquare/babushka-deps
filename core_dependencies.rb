@@ -15,6 +15,12 @@ packages = [
     'htop',
     'curl'
 ].each do |package|
+  exclude_on_centos = %w(whois)
+
+  if [:centos].include?(Babushka.host.flavour)
+    next if exclude_on_centos.include? package
+  end
+
   dep [package, 'managed'].join('.')
 end
 

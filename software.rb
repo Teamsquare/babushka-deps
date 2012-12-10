@@ -1,7 +1,13 @@
 dep 'core software' do
   setup do
     if [:centos].include?(Babushka.host.flavour)
-      unless shell('rpm -q epel-release-6-7.noarch').grep(/is not installed/).empty?
+      installed = false
+
+      shell("rpm -q epel-release-6-7.noarch") do |cmd|
+        installed = cmd.stdout.grep(/is not installed/).empty?
+      end
+
+      unless installed
         sudo("rpm -Uvh http://download3.fedora.redhat.com/pub/epel/6/x86_64/epel-release-6-7.noarch.rpm")
       end
     end
