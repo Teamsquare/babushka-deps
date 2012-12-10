@@ -29,7 +29,7 @@ dep 'new relic package source registered' do
 
   on :yum do
     met? do
-      output = shell('rpm -q newrelic-repo-5-3.noarch')
+      output = shell('rpm -q newrelic-repo-5-3.noarch').p
       log "Output is #{output}"
       output.grep(/is not installed/).empty?
     end
