@@ -19,7 +19,7 @@ dep 'new relic package source registered' do
 
   on :apt do
     met? do
-      shell('rpm -q newrelic').p.grep(/is not installed/)
+      !shell('rpm -q newrelic').p.grep(/is not installed/)
     end
 
     meet do
