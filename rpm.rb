@@ -4,17 +4,27 @@ dep 'rpm monitoring', :new_relic_license do
   end
 
   requires [
-     'new relic package source registered',
-     'new relic public key installed',
-     'newrelic-sysmond.managed',
-     'new relic configured'.with(new_relic_license),
-     'new relic started'
-   ]
+               'new relic package source registered',
+               'new relic public key installed',
+               'newrelic-sysmond.managed',
+               'new relic configured'.with(new_relic_license),
+               'new relic started'
+           ]
 end
 
 dep 'new relic package source registered' do
   setup do
     must_be_root
+  end
+
+  on :yum do
+    met? do
+      "/etc/apt/sources.list.d/newrelic.list".p.exists?
+    end
+
+    meet do
+      shell('wget -O /etc/apt/sources.list.d/newrelic.list http://download.newrelic.com/debian/newrelic.list')
+    end
   end
 
   on :apt do
@@ -27,9 +37,6 @@ dep 'new relic package source registered' do
     end
   end
 
-  on :yum do
-
-  end
 end
 
 dep 'new relic public key installed', :for => [:ubuntu, :debian] do
