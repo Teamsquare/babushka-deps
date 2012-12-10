@@ -17,7 +17,7 @@ dep 'new relic package source registered' do
     must_be_root
   end
 
-  on :yum do
+  on :apt do
     met? do
       "/etc/apt/sources.list.d/newrelic.list".p.exists?
     end
@@ -27,7 +27,7 @@ dep 'new relic package source registered' do
     end
   end
 
-  on :apt do
+  on :yum do
     met? do
       shell('rpm -q newrelic-repo-5-3.noarch').grep(/is not installed/).empty?
     end
