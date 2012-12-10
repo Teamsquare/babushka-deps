@@ -62,17 +62,18 @@ dep 'secured ssh logins' do
       }
     end
   }
-  meet {
-    %w[
+      meet {
+        %w[
       PasswordAuthentication
+      GSSAPIAuthentication
       ChallengeResponseAuthentication
     ].each {|option|
-      shell("sed -i'' -e 's/^[# ]*#{option}\\W*\\w*$/#{option} no/' #{ssh_conf_path(:sshd)}")
-    }
-  }
-  after {
-    if [:debian, :ubuntu].include?(Babushka.host.flavour)
-      shell "/etc/init.d/ssh restart"
+          shell("sed -i'' -e 's/^[# ]*#{option}\\W*\\w*$/#{option} no/' #{ssh_conf_path(:sshd)}")
+        }
+      }
+      after {
+        if [:debian, :ubuntu].include?(Babushka.host.flavour)
+          shell "/etc/init.d/ssh restart"
     elsif [:centos].include?(Babushka.host.flavour)
       shell "/etc/init.d/sshd restart"
     else
