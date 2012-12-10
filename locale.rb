@@ -23,6 +23,14 @@ dep 'set.locale', :locale_name do
       log "Setting the locale doesn't take effect until you log out and back in."
     }
   end
+  on :yum do
+    meet {
+      sudo("echo 'LANG=#{local_locale(locale_name)}' > /etc/sysconfig/i18n")
+    }
+    after {
+      log "Setting the locale doesn't take effect until you log out and back in."
+    }
+  end
 end
 
 dep 'exists.locale', :locale_name do
