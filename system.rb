@@ -93,7 +93,7 @@ dep 'lax host key checking' do
 end
 
 dep 'admins can sudo' do
-  requires 'admin group'
+  requires 'sudo.managed', 'admin group'
   met? {
     !'/etc/sudoers'.p.read.split("\n").grep(/^%admin\b/).empty?
   }

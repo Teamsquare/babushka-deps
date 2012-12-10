@@ -160,3 +160,4 @@ dep('libevent-dev.managed') {
 }
 dep 'memcached.managed'
 dep 'unzip.managed'
+dep 'sudo.managed'
