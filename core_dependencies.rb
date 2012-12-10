@@ -1,4 +1,4 @@
-exclude_on_centos = %w(whois)
+exclude_on_centos = ['whois']
 
 packages = [
     'lsof',
@@ -41,6 +41,28 @@ packages_without_binary = [
   end
 }
 
+centos_packages_without_binary = [
+  'readline-devel',
+  'openssl-devel',
+  'libxml2-devel',
+  'libxslt-devel',
+  'zlib-devel',
+  'iptables',
+  'util-linux-ng',
+  'libuuid-devel',
+  'libcurl',
+  'openssl-devel'
+].each { |p|
+  dep [p, 'managed'].join('.') do
+    provides []
+  end
+}
+
 dep('core dependencies') {
-  requires (packages.reject { |p| [:centos].include?(Babushka.host.flavour) && exclude_on_centos.include?(p) } + packages_without_binary.reject { |p| [:centos].include?(Babushka.host.flavour) && exclude_on_centos.include?(p) }).map { |p| "#{p}.managed" }
+  if [:centos].include?(Babushka.host.flavour)
+    requires (packages.reject { |p| exclude_on_centos.include?(p) } + centos_packages_without_binary).map { |p| "#{p}.managed" }
+  else
+    requires (packages + packages_without_binary).map { |p| "#{p}.managed" }
+  end
+
 }
