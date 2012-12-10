@@ -50,8 +50,7 @@ centos_packages_without_binary = [
   'iptables',
   'util-linux-ng',
   'libuuid-devel',
-  'libcurl',
-  'openssl-devel'
+  'libcurl' 
 ].each { |p|
   dep [p, 'managed'].join('.') do
     provides []
