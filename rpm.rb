@@ -19,7 +19,7 @@ dep 'new relic package source registered' do
 
   on :apt do
     met? do
-      shell('rpm -q newrelic-repo-5-3.noarch').p.grep(/^newrelic-repo-5-3.noarch$/)
+      shell('rpm -q newrelic-repo-5-3.noarch').grep(/^newrelic-repo-5-3.noarch$/)
     end
 
     meet do
