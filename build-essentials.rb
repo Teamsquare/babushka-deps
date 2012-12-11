@@ -8,7 +8,7 @@ end
 
 dep 'centos build essential installed' do
   met? do
-    !(shell('yum -q grouplist "Development Tools"').grep(/Installed Groups/).empty?)
+    !(shell('yum grouplist "Development Tools"').grep(/Installed Groups/).empty?)
   end
 
   meet do
