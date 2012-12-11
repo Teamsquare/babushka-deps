@@ -33,7 +33,7 @@ end
 dep 'bootstrap jruby', :username, :key, :new_relic_license, :install_prefix do
   username.default!('lexim')
   install_prefix.default!('/usr/local')
-  
+
   setup do
     unmeetable! "This dep has to be run as root." unless shell('whoami') == 'root'
   end
