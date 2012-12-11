@@ -26,13 +26,6 @@ dep 'wget.managed' do
   provides "wget"
 end
 
-dep('vim.managed') {
-  installs {
-    via :apt, 'vim'
-    via :yum, 'vim'
-  }
-  provides 'vim'
-}
 dep 'nmap.managed'
 dep 'screen.managed'
 dep 'jnettop.managed' do
