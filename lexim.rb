@@ -30,7 +30,7 @@ dep 'bootstrap ruby', :username, :key, :new_relic_license do
   ]
 end
 
-dep 'bootstrap jruby', :username, :key, :new_relic_license do
+dep 'bootstrap jruby', :username, :key, :new_relic_license, :install_prefix do
   username.default!('lexim')
 
   setup do
@@ -41,7 +41,8 @@ dep 'bootstrap jruby', :username, :key, :new_relic_license do
                'lexim:bootstrap minimal'.with(username, key, new_relic_license),
                'lexim:build essential installed',
                'lexim:nodejs installed',
-               'lexim:jruby.src',
+               'lexim:jre'.with(6),
+               'lexim:jruby'.with('1.7.1', '/usr/local'),
                'lexim:bundler.gem'
            ]
 end

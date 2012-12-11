@@ -9,14 +9,15 @@ dep 'ruby.src', :version, :patchlevel do
   def version_group
     version.to_s.scan(/^\d\.\d/).first
   end
+
   version.default!('1.9.3')
   patchlevel.default!('p327')
   requires 'readline headers.managed', 'yaml headers.managed'
   source "ftp://ftp.ruby-lang.org/pub/ruby/#{version_group}/ruby-#{version}-#{patchlevel}.tar.gz"
   provides "ruby == #{version}#{patchlevel}", 'gem', 'irb'
   configure_args '--disable-install-doc',
-    "--with-readline-dir=#{Babushka.host.pkg_helper.prefix}",
-    "--with-libyaml-dir=#{Babushka.host.pkg_helper.prefix}"
+                 "--with-readline-dir=#{Babushka.host.pkg_helper.prefix}",
+                 "--with-libyaml-dir=#{Babushka.host.pkg_helper.prefix}"
   postinstall {
     # TODO: hack for ruby bug where bin/* aren't installed when the build path
     # contains a dot-dir.
@@ -24,24 +25,25 @@ dep 'ruby.src', :version, :patchlevel do
   }
 end
 
-dep 'jruby.src', :version, :patchlevel do
-  def version_group
-    version.to_s.scan(/^\d\.\d/).first
-  end
+dep 'jruby', :version, :install_prefix do
   version.default!('1.7.1')
+
   requires 'readline headers.managed',
            'yaml headers.managed'
 
-  source "http://jruby.org.s3.amazonaws.com/downloads/#{version}/jruby-bin-#{version}.tar.gz"
+  setup do
+    must_be_root
+  end
 
-  provides "ruby == #{version}", 'gem', 'irb'
-  configure_args '--disable-install-doc',
-                 "--with-readline-dir=#{Babushka.host.pkg_helper.prefix}",
-                 "--with-libyaml-dir=#{Babushka.host.pkg_helper.prefix}"
+  met? do
+    "#{install_prefix}/jruby/bin/jruby.sh".p.exists?
+  end
 
-  postinstall {
-    # TODO: hack for ruby bug where bin/* aren't installed when the build path
-    # contains a dot-dir.
-    shell "cp bin/* #{prefix / 'bin'}", :sudo => Babushka::SrcHelper.should_sudo?
-  }
+  meet do
+    tar_file = "jruby-bin-#{version}.tar.gz"
+    shell "wget http://jruby.org.s3.amazonaws.com/downloads/#{version}/#{tar_file} -P /tmp"
+    shell "tar xvf /tmp/#{tar_file} -C #{install_prefix}"
+    shell "mv #{install_prefix}/*jruby* #{install_prefix}/jruby"
+    shell "rm /tmp/#{tar_file}"
+  end
 end
