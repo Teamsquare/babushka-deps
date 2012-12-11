@@ -23,7 +23,8 @@ dep 'bootstrap ruby', :username, :key, :new_relic_license do
 
   requires [
     'lexim:bootstrap minimal'.with(username, key, new_relic_license),
-    'lexim:build essential installed',
+    'lexim:centos build essential installed',
+    'lexim:ubuntu build essential installed',
     'lexim:nodejs installed',
     'lexim:ruby.src',
     'lexim:bundler.gem'
@@ -39,7 +40,8 @@ dep 'bootstrap jruby', :username, :key, :new_relic_license do
 
   requires [
                'lexim:bootstrap minimal'.with(username, key, new_relic_license),
-               'lexim:build essential installed',
+               'lexim:centos build essential installed',
+               'lexim:ubuntu build essential installed',
                'lexim:nodejs installed',
                'lexim:jruby.src',
                'lexim:bundler.gem'
