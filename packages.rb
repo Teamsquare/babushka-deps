@@ -141,7 +141,7 @@ dep 'vim.managed' do
   }
 
   provides [
-    {:apt => 'vim', :yum => 'vim-enhanced'}
+    {:otherwise => 'vim', :centos => 'vim-enhanced'}
   ]
 end
 dep 'wget.managed'
