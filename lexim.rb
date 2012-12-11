@@ -42,7 +42,7 @@ dep 'bootstrap jruby', :username, :key, :new_relic_license, :install_prefix do
                'lexim:bootstrap minimal'.with(username, key, new_relic_license),
                'lexim:build essential installed',
                'lexim:nodejs installed',
-               'lexim:jre'.with(6),
+               'lexim:oracle.jdk.6u33',
                'lexim:jruby'.with('1.7.1', install_prefix),
                'lexim:bundler.gem'
            ]
