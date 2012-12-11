@@ -30,6 +30,22 @@ dep 'bootstrap ruby', :username, :key, :new_relic_license do
   ]
 end
 
+dep 'bootstrap jruby', :username, :key, :new_relic_license do
+  username.default!('lexim')
+
+  setup do
+    unmeetable! "This dep has to be run as root." unless shell('whoami') == 'root'
+  end
+
+  requires [
+               'lexim:bootstrap minimal'.with(username, key, new_relic_license),
+               'lexim:build essential installed',
+               'lexim:nodejs installed',
+               'lexim:jruby.src',
+               'lexim:bundler.gem'
+           ]
+end
+
 dep 'after bootstrap', :username do
   username.default!('lexim')
 
@@ -41,6 +57,11 @@ dep 'after bootstrap', :username do
     'lexim:secured ssh logins',
     'lexim:user can write to usr local'
   ]
+end
+
+dep 'jboss node' do
+  requires 'lexim:bootstrap minimal'
+  requires 'lexim:bootstrap jruby'
 end
 
 dep 'web node', :logio_server do
