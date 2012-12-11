@@ -134,7 +134,12 @@ end
 dep 'tmux.managed'
 dep 'traceroute.managed'
 dep 'tree.managed'
-dep 'vim.managed'
+dep 'vim.managed' do
+  installs {
+    via :apt, 'vim'
+    via :yum, 'vim-enhanced'
+  }
+end
 dep 'wget.managed'
 dep 'yaml headers.managed' do
   installs {
