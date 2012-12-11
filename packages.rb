@@ -140,9 +140,10 @@ dep 'vim.managed' do
     via :yum, 'vim-enhanced'
   }
 
-  provides [
-    {:otherwise => 'vim', :centos => 'vim-enhanced'}
-  ]
+  provides {
+    via :apt, 'vim'
+    via :yum, 'vim-enhanced'
+  }
 end
 dep 'wget.managed'
 dep 'yaml headers.managed' do
