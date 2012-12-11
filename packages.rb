@@ -134,17 +134,7 @@ end
 dep 'tmux.managed'
 dep 'traceroute.managed'
 dep 'tree.managed'
-dep 'vim.managed' do
-  installs {
-    via :apt, 'vim'
-    via :yum, 'vim-enhanced'
-  }
-
-  met? do
-    shell("yum list -q 'vim#{Babushka.host.flavour == :centos ? '-managed' : ''}'").grep(/No matching Packages/).blank?
-  end
-
-end
+dep 'vim.bin'
 dep 'wget.managed'
 dep 'yaml headers.managed' do
   installs {
