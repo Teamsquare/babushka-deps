@@ -5,7 +5,7 @@ dep 'crucible.installed', :version, :install_prefix, :home_directory, :crucible_
   crucible_user.default!('crucible')
 
   requires [
-               'jre'.with(6),
+               'jdk'.with(6),
                'unzip.managed',
                'crucible.user'.with(crucible_user),
                'crucible'.with(version, install_prefix),

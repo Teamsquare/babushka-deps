@@ -1,7 +1,7 @@
-dep 'jre', :major_version do
+dep 'jdk', :major_version do
   major_version.default!(7)
 
-  requires 'jre.ppa', 'agreed to java license'
+  requires 'jdk.ppa', 'agreed to java license'
 
   if major_version == 7
     requires 'oracle-java7-installer.managed'
@@ -22,7 +22,7 @@ dep 'agreed to java license' do
     shell 'touch ~/java-license-accepted'
   }
 end
-dep 'jre.ppa' do
+dep 'jdk.ppa' do
   met? {
     "/etc/apt/sources.list.d/webupd8team-java-precise.list".p.exist?
   }
@@ -40,17 +40,4 @@ end
 
 dep 'oracle-java7-installer.managed' do
   provides 'java'
-end
-
-dep 'oracle.jdk.6u33' do
-  met? do
-    'java'.p.exists?
-  end
-
-  meet do
-    shell 'wget --no-cookies --header "Cookie: gpw_e24=http%3A%2F%2Fwww.oracle.com%2Ftechnetwork%2Fjava%2Fjavase%2Fdownloads%2Fjdk6-downloads-1637591.html;" http://download.oracle.com/otn-pub/java/jdk/6u33-b03/jdk-6u33-linux-x64.bin -P /tmp'
-    shell "chmod +x /tmp/jdk-6u33-linux-x64.bin"
-    shell "/tmp/jdk-6u33-linux-x64.bin"
-    shell "rm -rf /tmp/jdk-6u33-linux-x64.bin"
-  end
 end

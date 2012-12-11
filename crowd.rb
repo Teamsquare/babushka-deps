@@ -5,7 +5,7 @@ dep 'crowd.running', :version, :install_prefix, :home_directory, :use_port_80 do
   use_port_80.default!(false)
 
   requires [
-               'jre',
+               'jdk'.with(6),
                'crowd'.with(version, install_prefix, home_directory, use_port_80),
                'crowd.startable'.with(version, install_prefix)
            ]
@@ -26,7 +26,7 @@ dep 'crowd.installed', :version, :install_prefix, :home_directory, :use_port_80 
   use_port_80.default!(false)
 
   requires [
-               'jre'.with(6),
+               'jdk'.with(6),
                'crowd'.with(version, install_prefix, home_directory, use_port_80)
   ]
 end

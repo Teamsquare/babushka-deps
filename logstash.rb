@@ -21,7 +21,7 @@ dep 'logstash.running', :version, :install_prefix, :conf_prefix, :agent_role do
   agent_role.default!('indexer')
 
   requires [
-               'jre',
+               'jdk'.with(6),
                'logstash'.with(version, install_prefix),
                'logstash.configured'.with(version, install_prefix, conf_prefix, agent_role),
                'logstash.startable'.with(version, install_prefix, agent_role),

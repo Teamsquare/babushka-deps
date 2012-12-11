@@ -5,7 +5,7 @@ dep 'confluence.installed', :version, :install_prefix, :home_directory, :conflue
   confluence_user.default!('confluence')
 
   requires [
-               'jre'.with(6),
+               'jdk'.with(6),
                'confluence.user'.with(confluence_user),
                'confluence'.with(version, install_prefix),
                'confluence.home_directory_set'.with(install_prefix, home_directory),

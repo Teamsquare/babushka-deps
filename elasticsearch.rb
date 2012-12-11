@@ -3,7 +3,7 @@ dep 'elasticsearch.running', :version, :install_prefix do
   install_prefix.default!('/usr/local')
 
   requires [
-    'jre',
+    'jdk'.with(6),
     'elasticsearch'.with(version, install_prefix),
     'elasticsearch.startable'.with(version, install_prefix),
   ]
