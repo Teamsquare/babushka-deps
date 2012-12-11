@@ -139,7 +139,11 @@ dep 'vim.managed' do
     via :apt, 'vim'
     via :yum, 'vim-enhanced'
   }
-  provides 'vim'
+  
+  provides {
+    on [:ubuntu, :debian], 'vim'
+    on :centos, 'vim-enhanced'
+  }
 end
 dep 'wget.managed'
 dep 'yaml headers.managed' do
