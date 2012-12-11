@@ -139,11 +139,11 @@ dep 'vim.managed' do
     via :apt, 'vim'
     via :yum, 'vim-enhanced'
   }
-  
-  provides {
-    on [:ubuntu, :debian], 'vim'
-    on :centos, 'vim-enhanced'
-  }
+
+  met? do
+    shell("yum list -q 'vim#{Babushka.host.flavour == :centos ? '-managed' : ''}'").grep(/No matching Packages/).blank?
+  end
+
 end
 dep 'wget.managed'
 dep 'yaml headers.managed' do
