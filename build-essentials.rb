@@ -12,6 +12,6 @@ dep 'centos build essential installed' do
   end
 
   meet do
-    shell('yum groupinstall "Development Tools"')
+    shell('yum groupinstall -y "Development Tools"')
   end
 end
