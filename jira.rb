@@ -1,5 +1,5 @@
 dep 'jira.installed', :version, :install_prefix, :home_directory, :jira_user do
-  version.default!('5.2')
+  version.default!('5.2.5')
   install_prefix.default!('/usr/local')
   home_directory.default!('/etc/jira')
   jira_user.default!('jira')
