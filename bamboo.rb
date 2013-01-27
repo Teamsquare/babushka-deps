@@ -1,15 +1,14 @@
-dep 'bamboo.installed', :version, :install_prefix, :home_directory, :bamboo_user do
+dep 'bamboo.installed', :version, :install_prefix, :home_directory do
   version.default!('4.3.3')
   install_prefix.default!('/usr/local/atlassian')
   home_directory.default!('/etc/bamboo')
-  bamboo_user.default!('atlassian')
 
   requires [
                'jdk'.with(6),
-               'user and group exist'.with('atlassian', 'atlassian'),
+               'atlassian.user_exists',
                'bamboo'.with(version, install_prefix, home_directory),
                'bamboo.home_directory_set'.with(install_prefix, home_directory),
-               'atlassian.permissions'.with(install_prefix, home_directory, bamboo_user, 'bamboo')
+               'atlassian.permissions'.with(install_prefix, home_directory, 'bamboo', 'atlassian')
 
            ]
 end

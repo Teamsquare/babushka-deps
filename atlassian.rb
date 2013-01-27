@@ -10,3 +10,7 @@ dep 'atlassian.permissions', :install_prefix, :home_directory, :app_name, :usern
     shell "chown -R #{username}:#{username} #{home_directory}"
   end
 end
+
+dep 'atlassian.user_exists' do
+  requires 'user and group exist'.with('atlassian', 'atlassian')
+end
