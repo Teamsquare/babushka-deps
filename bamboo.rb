@@ -6,7 +6,7 @@ dep 'bamboo.installed', :version, :install_prefix, :home_directory, :bamboo_user
 
   requires [
                'jdk'.with(6),
-               'user and group exist'.with(bamboo_user, bamboo_user),
+               'user and group exist'.with('atlassian', 'atlassian'),
                'bamboo'.with(version, install_prefix, home_directory),
                'bamboo.home_directory_set'.with(install_prefix, home_directory),
                'atlassian.permissions'.with(install_prefix, home_directory, bamboo_user, 'bamboo')
@@ -24,6 +24,7 @@ dep 'bamboo', :version, :install_prefix, :home_directory do
   end
 
   meet do
+    shell "mkdir -p #{install_prefix}"
     tar_file = "atlassian-bamboo-#{version}.tar.gz"
     shell "wget http://www.atlassian.com/software/bamboo/downloads/binary/#{tar_file} -P /tmp"
     shell "tar xvf /tmp/#{tar_file} -C #{install_prefix}"
