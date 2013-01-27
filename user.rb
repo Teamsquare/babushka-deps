@@ -94,6 +94,7 @@ end
 
 dep 'user and group exist', :user, :group do
   group.default!(user)
+
   met? do
     '/etc/passwd'.p.grep(/^#{user}\:/) and
     '/etc/group'.p.grep(/^#{group}\:/)
@@ -101,7 +102,7 @@ dep 'user and group exist', :user, :group do
 
   meet do
     sudo "groupadd #{group}"
-    shell "useradd --create-home -g #{group} -s /bin/bash #{username}"
+    shell "useradd --create-home -g #{group} -s /bin/bash #{user}"
   end
 
 end
