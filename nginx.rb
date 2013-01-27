@@ -108,7 +108,7 @@ end
 dep 'running.nginx', :nginx_prefix, :server_type do
   server_type.default!('lexim_web_node')
 
-  requires 'configured.nginx'.with(nginx_prefix, server_type), 'startup script.nginx'.with(nginx_prefix)
+  requires 'monit running', configured.nginx'.with(nginx_prefix, server_type), 'startup script.nginx'.with(nginx_prefix)
   met? {
     nginx_running?.tap {|result|
       log "There is #{result ? 'something' : 'nothing'} listening on port 80."
