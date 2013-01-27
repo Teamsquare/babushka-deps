@@ -101,7 +101,7 @@ dep 'user and group exist', :user, :group do
 
   meet do
     sudo "groupadd #{group}"
-    sudo "useradd -g #{group} #{user} -s /bin/false"
+    shell "useradd --create-home -g #{group} -s /bin/bash #{username}"
   end
 
 end
