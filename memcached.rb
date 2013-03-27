@@ -1,5 +1,6 @@
 dep 'memcached.running' do
   requires [
+    'monit running',
     'user and group exist'.with(:user => 'memcache'),
     'memcached.managed',
     'memcached.startable'
