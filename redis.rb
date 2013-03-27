@@ -35,7 +35,7 @@ dep 'redis.startable', :version do
     must_be_root
   end
 
-  version.default!('2.6.2')
+  version.default!('2.6.11')
 
   met? { "/etc/monit/conf.d/redis.monitrc".p.exists? }
   meet do
