@@ -1,4 +1,6 @@
 dep 'sphinx.src', :version do
+  requires ['libpq-dev.managed']
+  
   version.default!('2.0.7')
   source "http://sphinxsearch.com/files/sphinx-#{version}-release.tar.gz"
 
