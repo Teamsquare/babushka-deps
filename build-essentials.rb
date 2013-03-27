@@ -1,6 +1,6 @@
 dep 'build essential installed' do
   if [:ubuntu, :debian].include?(Babushka.host.flavour)
-    requires %w(build-essential binutils-doc.managed autoconf.managed flex.managed bison.managed)
+    requires %w(binutils-doc.managed autoconf.managed flex.managed bison.managed)
   else
     requires 'centos build essential installed'
   end
