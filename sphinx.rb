@@ -1,5 +1,5 @@
 dep 'sphinx.src', :version do
-  version.default!('2.0.6')
+  version.default!('2.0.7')
   source "http://sphinxsearch.com/files/sphinx-#{version}-release.tar.gz"
 
   provides 'search', 'searchd', 'indexer'
