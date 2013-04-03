@@ -1,5 +1,5 @@
 check process unicorn
-  with pidfile /www/lexim/shared/unicorn.pid
+  with pidfile /www/teamsquare/shared/unicorn.pid
   start program = "/etc/init.d/unicorn start"
   stop program = "/etc/init.d/unicorn stop"
   if mem is greater than 300.0 MB for 1 cycles then restart       # eating up memory?

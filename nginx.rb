@@ -105,10 +105,8 @@ dep 'self signed cert.nginx', :domain, :nginx_prefix, :country, :state, :city, :
   }
 end
 
-dep 'running.nginx', :nginx_prefix, :server_type do
-  server_type.default!('lexim_web_node')
-
-  requires 'monit running', 'configured.nginx'.with(nginx_prefix, server_type), 'startup script.nginx'.with(nginx_prefix)
+dep 'running.nginx', :nginx_prefix do
+  requires 'monit running', 'configured.nginx'.with(nginx_prefix), 'startup script.nginx'.with(nginx_prefix)
   met? {
     nginx_running?.tap {|result|
       log "There is #{result ? 'something' : 'nothing'} listening on port 80."
@@ -143,21 +141,14 @@ dep 'nginx.site', :nginx_prefix, :site_name, :server_name, :proxy_host, :proxy_p
   end
 end
 
-dep 'configured.nginx', :nginx_prefix, :server_type do
-  server_type.default!('lexim_web_node')
-
+dep 'configured.nginx', :nginx_prefix do
   nginx_prefix.default!('/opt/nginx') # This is required because nginx.src might be cached.
   requires 'nginx.src'.with(:nginx_prefix => nginx_prefix), 'www user and group', 'nginx.logrotate'
   met? {
-    Babushka::Renderable.new(nginx_conf).from?(dependency.load_path.parent / "nginx/#{server_type}/nginx.conf.erb")
+    Babushka::Renderable.new(nginx_conf).from?(dependency.load_path.parent / "nginx/nginx.conf.erb")
   }
   meet {
-    render_erb "nginx/#{server_type}/nginx.conf.erb", :to => nginx_conf, :sudo => true
-
-    if server_type == 'lexim_web_node'
-      render_erb "nginx/#{server_type}/lexim.conf.erb", :to => nginx_prefix / "conf/lexim.conf", :perms => '755', :sudo => true
-    end
-
+    render_erb "nginx/nginx.conf.erb", :to => nginx_conf, :sudo => true
   }
 end
 
@@ -188,36 +179,3 @@ dep 'nginx.src', :nginx_prefix, :version, :upload_module_version do
     end
   }
 end
-
-dep 'http basic logins.nginx', :nginx_prefix, :domain, :username, :pass do
-  nginx_prefix.default!('/opt/nginx')
-  requires 'http basic auth enabled.nginx'.with(nginx_prefix, domain)
-  met? { shell("curl -I -u #{username}:#{pass} #{domain}").val_for('HTTP/1.1')[/^[25]0\d\b/] }
-  meet { append_to_file "#{username}:#{pass.to_s.crypt(pass)}", (nginx_prefix / 'conf/htpasswd'), :sudo => true }
-  after { restart_nginx }
-end
-
-dep 'http basic auth enabled.nginx', :nginx_prefix, :domain do
-  requires 'configured.nginx'.with(nginx_prefix)
-  met? { shell("curl -I #{domain}").val_for('HTTP/1.1')[/^401\b/] }
-  meet {
-    append_to_file %Q{auth_basic 'Restricted';\nauth_basic_user_file htpasswd;}, vhost_common, :sudo => true
-  }
-  after {
-    sudo "touch #{nginx_prefix / 'conf/htpasswd'}"
-    restart_nginx
-  }
-end
-
-dep 'www user and group' do
-  www_name = Babushka.host.osx? ? '_www' : 'www'
-  met? {
-    '/etc/passwd'.p.grep(/^#{www_name}\:/) and
-    '/etc/group'.p.grep(/^#{www_name}\:/)
-  }
-  meet {
-    sudo "groupadd #{www_name}"
-    sudo "useradd -g #{www_name} #{www_name} -s /bin/false"
-  }
-end
-

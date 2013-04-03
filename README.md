@@ -1,10 +1,10 @@
-Babushka Deps for Bootstrapping Lexim Servers
+Babushka Deps for Bootstrapping Teamsquare Servers
 =============================================
 
 These babusha deps are a collection of deps from a variety of sources that have been customised for the specific purposes
-of managing Lexim infrastructure.
+of managing Teamsquare infrastructure.
 
-The individual deps are (mostly) generic, and Lexim specific stuff has (mostly) been isolated to the lexim.rb file.
+The individual deps are (mostly) generic, and Teamsquare specific stuff has (mostly) been isolated to the teamsquare.rb file.
 
 The various deps, config files etc contained may be of use to others.
 
@@ -26,13 +26,9 @@ These babushka-deps are primarily inspired (sometimes verbatim) from Ben Hosking
 Ben Hoskings - benhoskings/babushka-deps
 Ivan Vanderbyl (Test Pilot) - ivanvanderbyl/babushka-deps and testpilot/babushka-deps
 Glen Maddern & John Barton (Envato) - envato/babushka-deps
+Lexim - lexim/babushka-deps
 
-They have been customised by Lexim.
-
-Copyright
-=========
-
-Copyright (c) 2010-2012
+They have been customised by Teamsquare.
 
 License
 =======

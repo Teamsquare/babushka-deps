@@ -1,5 +1,5 @@
 check process unicorn_worker_0
-    with pidfile /www/lexim/shared/pids/unicorn.0.pid
+    with pidfile /www/teamsquare/shared/pids/unicorn.0.pid
     start program = "/bin/true"
     stop program = "/etc/init.d/unicorn kill_worker 0"
     if mem is greater than 175.0 MB for 1 cycles then restart
@@ -7,7 +7,7 @@ check process unicorn_worker_0
     if cpu is greater than 25% for 1 cycles then restart
 
 check process unicorn_worker_1
-    with pidfile /www/lexim/shared/pids/unicorn.1.pid
+    with pidfile /www/teamsquare/shared/pids/unicorn.1.pid
     start program = "/bin/true"
     stop program = "/etc/init.d/unicorn kill_worker 1"
     if mem is greater than 175.0 MB for 1 cycles then restart
@@ -15,7 +15,7 @@ check process unicorn_worker_1
     if cpu is greater than 25% for 1 cycles then restart
 
 check process unicorn_worker_2
-    with pidfile /www/lexim/shared/pids/unicorn.2.pid
+    with pidfile /www/teamsquare/shared/pids/unicorn.2.pid
     start program = "/bin/true"
     stop program = "/etc/init.d/unicorn kill_worker 2"
     if mem is greater than 175.0 MB for 1 cycles then restart
@@ -23,7 +23,7 @@ check process unicorn_worker_2
     if cpu is greater than 25% for 1 cycles then restart
 
 check process unicorn_worker_3
-    with pidfile /www/lexim/shared/pids/unicorn.3.pid
+    with pidfile /www/teamsquare/shared/pids/unicorn.3.pid
     start program = "/bin/true"
     stop program = "/etc/init.d/unicorn kill_worker 3"
     if mem is greater than 175.0 MB for 1 cycles then restart
