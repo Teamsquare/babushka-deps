@@ -168,3 +168,9 @@ dep('libevent-dev.managed') {
 dep 'memcached.managed'
 dep 'unzip.managed'
 dep 'sudo.managed'
+dep 'imagemagick.managed' do
+  installs {
+    %w(libmagickwand-dev imagemagick)
+  }
+  provides 'convert'
+end

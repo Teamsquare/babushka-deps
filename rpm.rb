@@ -4,12 +4,12 @@ dep 'rpm monitoring', :new_relic_license do
   end
 
   requires [
-               'new relic package source registered',
-               'new relic public key installed',
-               'newrelic-sysmond.managed',
-               'new relic configured'.with(new_relic_license),
-               'new relic started'
-           ]
+    'new relic package source registered',
+    'new relic public key installed',
+    'newrelic-sysmond.managed',
+    'new relic configured'.with(new_relic_license),
+    'new relic started'
+  ]
 end
 
 dep 'new relic package source registered' do

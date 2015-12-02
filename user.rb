@@ -1,47 +1,20 @@
-dep 'dot files', :username, :github_user, :repo do
-  username.default!(shell('whoami'))
-  github_user.default('benhoskings')
-  repo.default('dot-files')
-  requires 'user exists'.with(:username => username), 'git', 'curl.bin', 'git-smart.gem'
-  met? {
-    "~/.dot-files/.git".p.exists?
-  }
-  meet {
-    shell %Q{curl -L "http://github.com/#{github_user}/#{repo}/raw/master/clone_and_link.sh" | bash}
-  }
-end
+dep 'provision admin', :username, :key do
+  setup do
+    must_be_root
+  end
 
-dep 'user can ssh without password', :username, :key, :home_dir_base, :admin do
-  home_dir_base.default!('/home')
-  admin.default!(true)
   requires [
-               'user exists'.with(:username => username, :home_dir_base => home_dir_base, :admin => admin),
-               'passwordless ssh logins'.with(username, key)
-           ]
+    'user setup for provisioning'.with(:username => username, :key => key),
+    'passwordless sudo'.with(username)
+  ]
 end
 
 dep 'user setup for provisioning', :username, :key, :home_dir_base do
   home_dir_base.default!('/home')
   requires [
                'user exists'.with(:username => username, :home_dir_base => home_dir_base),
-               'passwordless ssh logins'.with(username, key),
-               'passwordless sudo'.with(username)
-           ]
-end
-
-dep 'user auth setup', :username, :password, :key do
-  requires 'user exists with password'.with(username, password)
-  requires 'passwordless ssh logins'.with(username, key)
-end
-
-dep 'user exists with password', :username, :password do
-  requires 'user exists'.with(:username => username)
-  on :linux do
-    met? { shell('sudo cat /etc/shadow')[/^#{username}:[^\*!]/] }
-    meet {
-      sudo %{echo "#{password}\n#{password}" | passwd #{username}}
-    }
-  end
+               'passwordless ssh logins'.with(username, key)
+            ]
 end
 
 dep 'user exists', :username, :home_dir_base, :admin do
@@ -78,7 +51,7 @@ dep 'user exists', :username, :home_dir_base, :admin do
   end
 end
 
-dep('user can write to usr local') do
+dep 'user can write to usr local' do
   def user
     shell 'whoami'
   end

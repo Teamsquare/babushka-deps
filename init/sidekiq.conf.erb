@@ -1,0 +1,15 @@
+description "Sidekiq configuration."
+
+start on (local-filesystems and net-device-up IFACE=eth0)
+stop on shutdown
+
+respawn
+respawn limit 5 20
+
+script
+  PIDFILE= <%= app_path %>/shared/pids/sidekiq.pid
+  COUNT=25
+  echo $$ > $PIDFILE
+  chown <%= user %>:<%= user %> $PIDFILE
+  exec su -c "cd <%= app_path %>/current && RAILS_ENV=production /usr/local/bin/ruby -S bundle exec sidekiq -c $COUNT -P $PIDFILE >> <%= app_path %>/shared/log/sidekiq.log 2>&1" <%= user %>
+end script

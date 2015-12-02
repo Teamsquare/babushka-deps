@@ -3,9 +3,9 @@ def ssh_conf_path file
 end
 
 dep 'system', :host_name, :locale_name do
-  setup {
-    unmeetable! "This dep has to be run as root." unless shell('whoami') == 'root'
-  }
+  setup do
+    must_be_root
+  end
 
   requires [
     'set.locale'.with(locale_name),

@@ -1,14 +1,14 @@
 dep 'jira.installed', :version, :install_prefix, :home_directory do
-  version.default!('5.2.5')
-  install_prefix.default!('/usr/local')
+  version.default!('6.1.2')
+  install_prefix.default!('/usr/local/atlassian')
   home_directory.default!('/etc/jira')
 
   requires [
-               'jdk'.with(6),
+               'jdk'.with(7),
                'atlassian.user_exists',
                'jira'.with(version, install_prefix),
                'jira.home_directory_set'.with(install_prefix, home_directory),
-               'atlassian.permissions'.with(install_prefix, home_directory, 'atlassian', 'jira')
+               'atlassian.permissions'.with(install_prefix, home_directory, 'jira', 'atlassian')
            ]
 end
 

@@ -1,5 +1,5 @@
 dep 'npm installed' do
-  requires 'nodejs installed'
+  requires 'nodejs.src'
 
   met? do
     '/usr/local/bin/npm'.p.exists?
