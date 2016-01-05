@@ -23,6 +23,5 @@ dep 'unicorn.startable', :user do
   meet do
     render_erb 'unicorn/unicorn.init.conf.erb', :to => '/etc/init/unicorn.conf', :perms => '755', :sudo => true
     render_erb 'unicorn/unicorn.init.d.erb', :to => '/etc/init.d/unicorn', :perms => '755', :sudo => true
-    shell "monit reload"
   end
 end
