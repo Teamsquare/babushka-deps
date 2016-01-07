@@ -22,9 +22,10 @@ dep 'agreed to java license' do
     shell 'touch ~/java-license-accepted'
   }
 end
+
 dep 'jdk.ppa' do
   met? {
-    "/etc/apt/sources.list.d/webupd8team-java-precise.list".p.exist?
+    "/etc/apt/sources.list.d/webupd8team-java-trusty.list".p.exist?
   }
   meet do
     shell "add-apt-repository ppa:webupd8team/java"
