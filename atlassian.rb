@@ -12,7 +12,7 @@ end
 
 dep 'atlassian.product.installed', :product_name, :version, :install_prefix, :remote_file_name do
   install_prefix.default!('/usr/local/atlassian')
-  
+
   setup do
     must_be_root
   end
@@ -24,9 +24,9 @@ dep 'atlassian.product.installed', :product_name, :version, :install_prefix, :re
   meet do
     shell "mkdir -p #{install_prefix}"
     shell "wget https://www.atlassian.com/software/#{product_name}/downloads/binary/#{remote_file_name} -P /tmp"
-    shell "tar xvf /tmp/#{tar_file} -C #{install_prefix}"
+    shell "tar xvf /tmp/#{remote_file_name} -C #{install_prefix}"
     shell "mv #{install_prefix}/*#{product_name}* #{install_prefix}/#{product_name}"
-    shell "rm /tmp/#{tar_file}"
+    shell "rm /tmp/#{remote_file_name}"
   end
 end
 
