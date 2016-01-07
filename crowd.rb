@@ -1,6 +1,6 @@
 dep 'crowd.running', :version, :install_prefix, :home_directory, :use_port_80 do
-  version.default!('2.5.2')
-  install_prefix.default!('/usr/local')
+  version.default!('2.8.3')
+  install_prefix.default!('/usr/local/atlassian')
   home_directory.default!('/etc/crowd')
   use_port_80.default!(false)
 
@@ -20,13 +20,13 @@ dep 'crowd.running', :version, :install_prefix, :home_directory, :use_port_80 do
 end
 
 dep 'crowd.installed', :version, :install_prefix, :home_directory, :use_port_80 do
-  version.default!('2.5.2')
-  install_prefix.default!('/usr/local')
+  version.default!('2.8.3')
+  install_prefix.default!('/usr/local/atlassian')
   home_directory.default!('/etc/crowd')
   use_port_80.default!(false)
 
   requires [
-               'jdk'.with(6),
+               'jdk'.with(7),
                'crowd'.with(version, install_prefix, home_directory, use_port_80)
   ]
 end
@@ -44,7 +44,7 @@ dep 'crowd', :version, :install_prefix, :home_directory, :use_port_80 do
 
   meet do
     tar_file = "atlassian-crowd-#{version}.tar.gz"
-    shell "wget http://www.atlassian.com/software/crowd/downloads/binary/#{tar_file} -P /tmp"
+    shell "wget https://www.atlassian.com/software/crowd/downloads/binary/#{tar_file} -P /tmp"
     shell "tar xvf /tmp/#{tar_file} -C #{install_prefix}"
     shell "mv #{install_prefix}/*crowd* #{install_prefix}/crowd"
     shell "rm /tmp/#{tar_file}"
