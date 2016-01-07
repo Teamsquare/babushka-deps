@@ -1,18 +1,8 @@
-dep 'jira.installed', :version, :install_prefix, :home_directory do
+dep 'jira', :version, :install_prefix do
   version.default!('6.1.2')
   install_prefix.default!('/usr/local/atlassian')
   home_directory.default!('/etc/jira')
 
-  requires [
-               'jdk'.with(7),
-               'atlassian.user_exists',
-               'jira'.with(version, install_prefix),
-               'jira.home_directory_set'.with(install_prefix, home_directory),
-               'atlassian.permissions'.with(install_prefix, home_directory, 'jira', 'atlassian')
-           ]
-end
-
-dep 'jira', :version, :install_prefix do
   setup do
     must_be_root
   end
@@ -29,6 +19,16 @@ dep 'jira', :version, :install_prefix do
     shell "mv #{install_prefix}/*jira* #{install_prefix}/jira"
     shell "rm /tmp/#{tar_file}"
   end
+end
+
+dep 'jira.installed', :version, :install_prefix, :home_directory do
+  requires [
+               'jdk'.with(7),
+               'atlassian.user_exists',
+               'jira'.with(version, install_prefix),
+               'jira.home_directory_set'.with(install_prefix, home_directory),
+               'atlassian.permissions'.with(install_prefix, home_directory, 'jira', 'atlassian')
+           ]
 end
 
 dep 'jira.home_directory_set', :install_prefix, :home_directory do
