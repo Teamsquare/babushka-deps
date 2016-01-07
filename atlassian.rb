@@ -18,7 +18,7 @@ dep 'atlassian.product.installed', :product_name, :version, :install_prefix, :re
   end
 
   met? do
-    "#{install_prefix}/#{product_name}/bin/startup.sh".p.exists?
+    "#{install_prefix}/#{product_name}".p.exists?
   end
 
   meet do
