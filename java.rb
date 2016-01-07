@@ -1,14 +1,14 @@
 dep 'jdk', :major_version do
-  major_version.default!(7)
+  major_version.default!(8)
 
   requires 'jdk.ppa', 'agreed to java license'
 
-  if major_version == 7
-    requires 'oracle-java7-installer.managed'
+  if major_version == 8
+    requires 'oracle-java8-installer.managed'
   end
 
-  if major_version == 6
-    requires 'oracle-java6-installer.managed'
+  if major_version == 7
+    requires 'oracle-java7-installer.managed'
   end
 end
 
@@ -34,10 +34,10 @@ dep 'jdk.ppa' do
   }
 end
 
-dep 'oracle-java6-installer.managed' do
+dep 'oracle-java7-installer.managed' do
   provides 'java'
 end
 
-dep 'oracle-java7-installer.managed' do
+dep 'oracle-java8-installer.managed' do
   provides 'java'
 end
