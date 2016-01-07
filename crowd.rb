@@ -1,7 +1,6 @@
-dep 'crowd', :version, :install_prefix, :home_directory do
+dep 'crowd.installed', :version, :install_prefix do
   version.default!('2.8.3')
   install_prefix.default!('/usr/local/atlassian')
-  home_directory.default!('/etc/crowd')
 
   setup do
     must_be_root
@@ -36,10 +35,12 @@ dep 'crowd.home_directory_set', :install_prefix, :home_directory do
   end
 end
 
-dep 'crowd.installed', :version, :install_prefix, :home_directory do
+dep 'crowd', :version, :install_prefix, :home_directory do
+  home_directory.default!('/etc/crowd')
+
   requires [
                'jdk'.with(7),
-               'crowd'.with(version, install_prefix, home_directory),
+               'crowd.installed'.with(version, install_prefix),
                'crowd.home_directory_set'.with(install_prefix, home_directory),
                'atlassian.permissions'.with(install_prefix, home_directory, 'crowd', 'atlassian')
   ]
