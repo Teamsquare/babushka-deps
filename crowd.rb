@@ -6,7 +6,7 @@ dep 'crowd', :version, :install_prefix, :home_directory do
   requires [
                'jdk',
                'atlassian.user_exists',
-               'atlassian.product.installed'.with('crowd', version, install_prefix, "atlassian-#{product_name}-#{version}.tar.gz"),
+               'atlassian.product.installed'.with('crowd', version, install_prefix, "atlassian-crowd-#{version}.tar.gz"),
                'atlassian.product.home_directory_set'.with('crowd', install_prefix, home_directory),
                'atlassian.permissions'.with(install_prefix, home_directory, 'crowd', 'atlassian')
            ]
