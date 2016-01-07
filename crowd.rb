@@ -4,7 +4,7 @@ dep 'crowd', :version, :install_prefix, :home_directory do
   home_directory.default!('/etc/crowd')
 
   requires [
-               'jdk'.with(7),
+               'jdk'.with(8),
                'atlassian.user_exists',
                'atlassian.product.installed'.with('crowd', version, install_prefix),
                'atlassian.product.home_directory_set'.with('crowd', install_prefix, home_directory),
