@@ -12,8 +12,7 @@ end
 
 dep 'atlassian.product.installed', :product_name, :version, :install_prefix, :remote_file_name do
   install_prefix.default!('/usr/local/atlassian')
-  remote_file_name.default!("atlassian-#{product_name}-#{version}.tar.gz")
-
+  
   setup do
     must_be_root
   end
