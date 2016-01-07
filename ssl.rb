@@ -1,5 +1,7 @@
 dep 'passwordless ssh logins', :username, :key do
   username.default(shell('whoami'))
+  key.default!('')
+
   def ssh_dir
     "~#{username}" / '.ssh'
   end

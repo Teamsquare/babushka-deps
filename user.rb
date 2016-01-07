@@ -1,4 +1,6 @@
 dep 'provision admin', :username, :key do
+  key.default!('')
+  
   setup do
     must_be_root
   end
@@ -10,6 +12,7 @@ dep 'provision admin', :username, :key do
 end
 
 dep 'user setup for provisioning', :username, :key, :home_dir_base do
+  key.default!('')
   home_dir_base.default!('/home')
   requires [
                'user exists'.with(:username => username, :home_dir_base => home_dir_base),

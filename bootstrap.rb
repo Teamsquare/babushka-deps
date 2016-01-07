@@ -1,5 +1,7 @@
 dep 'bootstrap minimal', :username, :key do
   username.default!('ubuntu')
+  key.default!('')
+  
   setup do
     must_be_root
   end
