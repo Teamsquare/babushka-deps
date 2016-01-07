@@ -19,6 +19,7 @@ end
 
 dep 'pg.server' do
 	requires [
+		'pg.ppa',
 		'postgresql-9.4.managed',
 		'postgresql-client-9.4.managed',
 		'postgresql-contrib-9.4.managed'
@@ -27,6 +28,7 @@ end
 
 dep 'pg.client' do
 	requires [
+		'pg.ppa',
 		'libpq-dev.managed',
 		'postgresql-client-9.4.managed'
 	]
