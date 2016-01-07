@@ -14,7 +14,7 @@ dep 'jira', :version, :install_prefix do
   meet do
     shell "mkdir -p #{install_prefix}"
     tar_file = "atlassian-jira-#{version}.tar.gz"
-    shell "wget http://www.atlassian.com/software/jira/downloads/binary/#{tar_file} -P /tmp"
+    shell "wget https://www.atlassian.com/software/jira/downloads/binary/#{tar_file} -P /tmp"
     shell "tar xvf /tmp/#{tar_file} -C #{install_prefix}"
     shell "mv #{install_prefix}/*jira* #{install_prefix}/jira"
     shell "rm /tmp/#{tar_file}"
