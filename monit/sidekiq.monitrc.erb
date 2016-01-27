@@ -1,0 +1,3 @@
+check process sidekiq with pidfile <%= app_path %>/shared/pids/sidekiq.pid
+  start program = "/sbin/start sidekiq"
+  stop program = "/sbin/stop sidekiq"
