@@ -7,7 +7,7 @@ respawn
 respawn limit 5 20
 
 script
-  PIDFILE= <%= app_path %>/shared/pids/sidekiq.pid
+  PIDFILE=<%= app_path %>/shared/pids/sidekiq.pid
   COUNT=25
   echo $$ > $PIDFILE
   chown <%= user %>:<%= user %> $PIDFILE
