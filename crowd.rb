@@ -33,7 +33,7 @@ dep 'crowd.running', :version, :install_prefix, :home_directory do
   home_directory.default!('/etc/crowd')
 
   requires [
-               'jdk'.with(6),
+               'jdk',
                'crowd'.with(version, install_prefix, home_directory),
                'crowd.startable'.with(version, install_prefix)
            ]
