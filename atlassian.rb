@@ -41,7 +41,7 @@ dep 'atlassian.product.home_directory_set', :product_name, :install_prefix, :hom
 
   meet do
     shell "mkdir -p #{home_directory}"
-    shell "echo '#{product_name}.home=#{home_directory}' > #{install_prefix}/#{product_name}/atlassian-jira/WEB-INF/classes/#{product_name}-application.properties"
+    shell "echo '#{product_name}.home=#{home_directory}' > #{install_prefix}/#{product_name}/atlassian-#{product_name}/WEB-INF/classes/#{product_name}-application.properties"
   end
 end
 
