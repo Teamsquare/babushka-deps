@@ -18,7 +18,7 @@ dep 'crowd.home_directory_set', :install_prefix, :home_directory do
   end
 
   met? do
-    "#{install_prefix}/crowd-webapp/WEB-INF/classes/crowd-init.properties".p.grep(/#{crowd.home}/)
+    "#{install_prefix}/crowd-webapp/WEB-INF/classes/crowd-init.properties".p.grep(/crowd.home/)
   end
 
   meet do
