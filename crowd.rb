@@ -7,9 +7,24 @@ dep 'crowd', :version, :install_prefix, :home_directory do
                'jdk',
                'atlassian.user_exists',
                'atlassian.product.installed'.with('crowd', version, install_prefix, "atlassian-crowd-#{version}.tar.gz"),
-               'atlassian.product.home_directory_set'.with('crowd', install_prefix, home_directory),
+               'crowd.home_directory_set'.with(install_prefix, home_directory),
                'atlassian.permissions'.with(install_prefix, home_directory, 'crowd', 'atlassian')
            ]
+end
+
+dep 'crowd.home_directory_set', :install_prefix, :home_directory do
+  setup do
+    must_be_root
+  end
+
+  met? do
+    "#{install_prefix}/crowd/crowd-webapp/WEB-INF/classes/crowd-init.properties".p.grep(/crowd.home/)
+  end
+
+  meet do
+    shell "mkdir -p #{home_directory}"
+    shell "echo 'crowd.home=#{home_directory}' > #{install_prefix}/crowd/crowd-webapp/WEB-INF/classes/crowd-init.properties"
+  end
 end
 
 dep 'crowd.startable', :version, :install_prefix do
@@ -33,7 +48,7 @@ dep 'crowd.running', :version, :install_prefix, :home_directory do
   home_directory.default!('/etc/crowd')
 
   requires [
-               'jdk'.with(6),
+               'jdk',
                'crowd'.with(version, install_prefix, home_directory),
                'crowd.startable'.with(version, install_prefix)
            ]
