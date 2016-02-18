@@ -10,5 +10,5 @@ script
   PIDFILE=<%= app_path %>/shared/pids/clockwork.pid
   echo $$ > $PIDFILE
   chown <%= user %>:<%= user %> $PIDFILE
-  exec su -c "cd <%= app_path %>/current && RAILS_ENV=production /usr/local/bin/ruby -S bundle exec clockwork /www/teamsquare/current/config/clock.rb -P $PIDFILE >> <%= app_path %>/shared/log/clockwork.log 2>&1" <%= user %>
+  exec su -c "cd <%= app_path %>/current && RAILS_ENV=production /usr/local/bin/ruby -S bundle exec clockwork <%= app_path %>/current/config/clock.rb -P $PIDFILE >> <%= app_path %>/shared/log/clockwork.log 2>&1" <%= user %>
 end script
