@@ -1,8 +1,4 @@
-dep 'git.managed' do
-  requires 'ppa'.with('ppa:git-core/ppa')
-  installs 'git'
-  provides 'git >= 1.7.4.1'
-end
+dep 'git.managed'
 
 dep 'git.src', :version do
   version.default!('1.7.9')

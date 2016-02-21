@@ -103,6 +103,7 @@ dep 'ncurses.managed' do
 end
 dep 'nmap.managed'
 dep 'oniguruma.managed'
+dep 'perl.managed'
 dep 'pcre.managed' do
   installs {
     via :apt, 'libpcre3-dev'
