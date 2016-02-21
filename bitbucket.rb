@@ -52,4 +52,18 @@ dep 'bitbucket.home_directory_set', :install_prefix, :home_directory do
     shell "mkdir -p #{home_directory}"
     shell "sed -i s/export BITBUCKET_HOME=/export BITBUCKET_HOME=\"#{home_directory}\"/ #{install_prefix}/bin/setenv.sh"
   end
+
+  dep 'bitbucket.shared_config', :home_directory, :install_prefix do
+    setup do
+      must_be_root
+    end
+
+    met? do
+      "#{home_directory}/shared/server.xml".p.exists?
+    end
+
+    meet do
+      shell "cp #{install_prefix}/conf/server.xml #{home_directory}/shared/"
+    end
+  end
 end
