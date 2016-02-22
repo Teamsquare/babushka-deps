@@ -11,7 +11,7 @@ dep 'bitbucket', :version, :install_prefix, :home_directory do
                'atlassian.user_exists',
                'bitbucket.installed'.with(product_name, version, install_prefix, "atlassian-bitbucket-#{version}.tar.gz"),
                'bitbucket.home_directory_set'.with(product_name, install_prefix, home_directory),
-               'atlassian.permissions'.with(install_prefix, home_directory, product_name)
+               'atlassian.permissions'.with(install_prefix, home_directory, product_name, 'atlassian')
            ]
 end
 

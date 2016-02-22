@@ -45,9 +45,7 @@ dep 'atlassian.product.home_directory_set', :product_name, :install_prefix, :hom
   end
 end
 
-dep 'atlassian.permissions', :install_prefix, :home_directory, :app_name, :username do
-  username.default!('atlassian')
-  
+dep 'atlassian.permissions', :install_prefix, :home_directory, :app_name, :username do  
   met? do
     output = shell?("stat #{install_prefix}/#{app_name} | grep Uid | grep #{username}")
 
