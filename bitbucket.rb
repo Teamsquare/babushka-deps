@@ -49,7 +49,7 @@ dep 'bitbucket.home_directory_set', :install_prefix, :home_directory do
 
   meet do
     shell "mkdir -p #{home_directory}"
-    shell "sed -i s+export BITBUCKET_HOME=+export BITBUCKET_HOME='#{home_directory}'+ #{install_prefix}/bin/setenv.sh"
+    shell "sed -i s+export\ BITBUCKET_HOME=+export\ BITBUCKET_HOME='#{home_directory}'+ #{install_prefix}/bin/setenv.sh"
   end
 
   dep 'bitbucket.shared_config', :home_directory, :install_prefix do
