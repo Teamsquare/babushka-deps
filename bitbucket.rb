@@ -10,7 +10,7 @@ dep 'bitbucket', :version, :install_prefix, :home_directory do
                'git',
                'atlassian.user_exists',
                'bitbucket.installed'.with(product_name, version, install_prefix, "atlassian-bitbucket-#{version}.tar.gz"),
-               'bitbucket.home_directory_set'.with(install_prefix, home_directory),
+               'bitbucket.home_directory_set'.with(product_name, install_prefix, home_directory),
                'atlassian.permissions'.with(install_prefix, home_directory, product_name)
            ]
 end
@@ -38,18 +38,18 @@ dep 'bitbucket.installed', :product_name, :version, :install_prefix, :remote_fil
   end
 end
 
-dep 'bitbucket.home_directory_set', :install_prefix, :home_directory do
+dep 'bitbucket.home_directory_set', :product_name, :install_prefix, :home_directory do
   setup do
     must_be_root
   end
 
   met? do
-    "#{install_prefix}/bin/setenv.sh".p.grep(/#{home_directory}/)
+    "#{install_prefix}/#{product_name}/bin/setenv.sh".p.grep(/#{home_directory}/)
   end
 
   meet do
     shell "mkdir -p #{home_directory}"
-    shell 'sed -i s+export\ BITBUCKET_HOME=+export\ BITBUCKET_HOME="' + home_directory + '"+ ' + install_prefix + '/bin/setenv.sh'
+    shell 'sed -i s+export\ BITBUCKET_HOME=+export\ BITBUCKET_HOME="' + home_directory + '"+ ' + install_prefix + '/' + product_name + '/bin/setenv.sh'
   end
 
   dep 'bitbucket.shared_config', :home_directory, :install_prefix do
