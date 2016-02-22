@@ -8,7 +8,6 @@ dep 'bitbucket', :version, :install_prefix, :home_directory do
   requires [
                'jdk',
                'git',
-               'perl',
                'atlassian.user_exists',
                'bitbucket.installed'.with(product_name, version, install_prefix, "atlassian-bitbucket-#{version}.tar.gz"),
                'bitbucket.home_directory_set'.with(install_prefix, home_directory),
