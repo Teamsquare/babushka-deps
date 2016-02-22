@@ -13,7 +13,7 @@ dep 'nginx.src', :nginx_prefix, :version, :upload_module_version do
   upload_module_version.default!('2.2.0')
   requires 'pcre.managed', 'libssl headers.managed', 'zlib headers.managed'
   source "http://nginx.org/download/nginx-#{version}.tar.gz"
-  extra_source "http://www.grid.net.ru/nginx/download/nginx_upload_module-#{upload_module_version}.tar.gz"
+  extra_source "https://github.com/vkholodkov/nginx-upload-module/archive/#{upload_module_version}.tar.gz"
   configure_args "--with-ipv6", "--with-http_spdy_module", "--with-pcre", "--with-http_ssl_module", "--with-http_gzip_static_module"
     "--add-module='../../nginx_upload_module-#{upload_module_version}/nginx_upload_module-#{upload_module_version}'"
   prefix nginx_prefix
