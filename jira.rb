@@ -1,5 +1,5 @@
 dep 'jira', :version, :install_prefix, :home_directory do
-  version.default!('7.0.3')
+  version.default!('7.1.0')
   install_prefix.default!('/usr/local/atlassian')
   home_directory.default!('/etc/jira')
 
