@@ -23,6 +23,6 @@ dep 'bamboo.home_directory_set', :install_prefix, :home_directory do
 
   meet do
     shell "mkdir -p #{home_directory}"
-    shell "echo 'bamboo.home=#{home_directory}' > #{install_prefix}/bamboo/atlassian-bamboo/WEB-INF/classes/bamboo  -init.properties"
+    shell "echo 'bamboo.home=#{home_directory}' > #{install_prefix}/bamboo/atlassian-bamboo/WEB-INF/classes/bamboo-init.properties"
   end
 end
