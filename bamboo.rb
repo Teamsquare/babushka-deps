@@ -18,7 +18,7 @@ dep 'bamboo.home_directory_set', :install_prefix, :home_directory do
   end
 
   met? do
-    "#{install_prefix}/bamboo/webapp/WEB-INF/classes/bamboo-init.properties".p.grep(/#{home_directory}/)
+    "#{install_prefix}/bamboo/atlassian-bamboo/WEB-INF/classes/bamboo-init.properties".p.grep(/#{home_directory}/)
   end
 
   meet do
