@@ -48,5 +48,8 @@ dep 'postgresql-client-9.4.managed' do
 	provides 'pg_config'
 end
 
-dep 'postgresql-contrib-9.4.managed'
+dep 'postgresql-contrib-9.4.managed' do
+	provides []
+end
+
 dep 'postgresql-server-dev-9.4.managed'
