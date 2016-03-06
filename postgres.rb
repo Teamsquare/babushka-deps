@@ -52,4 +52,6 @@ dep 'postgresql-contrib-9.4.managed' do
 	provides []
 end
 
-dep 'postgresql-server-dev-9.4.managed'
+dep 'postgresql-server-dev-9.4.managed' do
+	provides []
+end
