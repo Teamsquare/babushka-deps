@@ -177,7 +177,9 @@ dep 'imagemagick.managed' do
   }
   provides 'convert'
 end
-dep 'libtalloc-dev.managed'
+dep 'libtalloc-dev.managed' do
+  provides []
+end
 dep 'snmp.managed' do
   provides 'snmpget'
 end
