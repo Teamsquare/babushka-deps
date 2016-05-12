@@ -3,6 +3,9 @@ dep 'bundler.gem' do
   installs 'bundler >= 1.0.13'
   provides 'bundle'
 end
+dep 'libgmp3-dev.managed' do
+  provides []
+end
 dep 'libsqlite3-dev.managed' do
   provides []
 end
