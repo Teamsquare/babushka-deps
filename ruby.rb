@@ -4,7 +4,7 @@ dep 'ruby.src', :version, :patchlevel do
   end
 
   version.default!('2.2.4')
-  patchlevel.default!('p0')
+  patchlevel.default!('p230')
   requires 'readline headers.managed', 'yaml headers.managed'
   source "https://cache.ruby-lang.org/pub/ruby/#{version_group}/ruby-#{version}.tar.gz"
   provides "ruby == #{version}#{patchlevel}", 'gem', 'irb'
