@@ -11,6 +11,10 @@ dep 'libsqlite3-dev.managed' do
 end
 dep 'sqlite3.managed'
 
+dep 'ntp.managed' do
+  provides 'ntpd'
+end
+
 dep 'coreutils.managed', :for => :osx do
   provides 'gecho'
   after :on => :osx do

@@ -13,7 +13,8 @@ packages = [
     'elinks',
     'lynx',
     'htop',
-    'curl'
+    'curl',
+    'ntp'
 ].each do |package|
   dep [package, 'managed'].join('.')
 end
