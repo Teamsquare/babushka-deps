@@ -13,8 +13,7 @@ packages = [
     'elinks',
     'lynx',
     'htop',
-    'curl',
-    'ntp'
+    'curl'
 ].each do |package|
   dep [package, 'managed'].join('.')
 end
@@ -33,7 +32,8 @@ packages_without_binary = [
     'libossp-uuid-dev',
     'libcurl3',
     'python-software-properties',
-    'libcurl4-openssl-dev'
+    'libcurl4-openssl-dev',
+    'ntp'
 ].each { |p|
   dep [p, 'managed'].join('.') do
     provides []
