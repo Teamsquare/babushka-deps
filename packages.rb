@@ -12,7 +12,7 @@ end
 dep 'sqlite3.managed'
 
 dep 'ntp.managed' do
-  provides 'ntpq'
+  provides []
 end
 
 dep 'coreutils.managed', :for => :osx do
