@@ -3,8 +3,8 @@ dep 'ruby.src', :version, :patchlevel do
     version.to_s.scan(/^\d\.\d/).first
   end
 
-  version.default!('2.2.4')
-  patchlevel.default!('p230')
+  version.default!('2.3.3')
+  patchlevel.default!('p222')
   requires 'readline headers.managed', 'yaml headers.managed'
   source "https://cache.ruby-lang.org/pub/ruby/#{version_group}/ruby-#{version}.tar.gz"
   provides "ruby == #{version}#{patchlevel}", 'gem', 'irb'
