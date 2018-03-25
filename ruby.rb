@@ -1,13 +1,12 @@
-dep 'ruby.src', :version, :patchlevel do
+dep 'ruby.src', :version do
   def version_group
     version.to_s.scan(/^\d\.\d/).first
   end
 
-  version.default!('2.3.3')
-  patchlevel.default!('p222')
+  version.default!('2.4.3')
   requires 'readline headers.managed', 'yaml headers.managed'
   source "https://cache.ruby-lang.org/pub/ruby/#{version_group}/ruby-#{version}.tar.gz"
-  provides "ruby == #{version}#{patchlevel}", 'gem', 'irb'
+  provides "ruby == #{version}", 'gem', 'irb'
   configure_args '--disable-install-doc',
                  "--with-readline-dir=#{Babushka.host.pkg_helper.prefix}",
                  "--with-libyaml-dir=#{Babushka.host.pkg_helper.prefix}"
